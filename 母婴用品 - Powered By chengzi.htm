@@ -1,0 +1,1433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>母婴用品 - Powered By chengzi</title>
+		<meta name="author" content="chengzi Team">
+		<meta name="copyright" content="chengzi">
+			<meta name="keywords" content="母婴用品">
+			<meta name="description" content="母婴用品">
+<link href="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/animate.css" rel="stylesheet" type="text/css">
+<link href="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/common.css" rel="stylesheet" type="text/css">
+<link href="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/product.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/jquery.js"></script>
+<script type="text/javascript" src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/jquery_002.js"></script>
+<script type="text/javascript" src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/common.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $headerCart = $("#headerCart");
+	var $compareBar = $("#compareBar");
+	var $compareForm = $("#compareBar form");
+	var $compareSubmit = $("#compareBar a.submit");
+	var $clearCompare = $("#compareBar a.clear");
+	var $productForm = $("#productForm");
+	var $brandId = $("#brandId");
+	var $promotionId = $("#promotionId");
+	var $orderType = $("#orderType");
+	var $pageNumber = $("#pageNumber");
+	var $pageSize = $("#pageSize");
+	var $filter = $("#filter dl");
+	var $hiddenFilter = $("#filter dl:hidden");
+	var $moreOption = $("#filter dd.moreOption");
+	var $brand = $("#filter a.brand");
+	var $attribute = $("#filter a.attribute");
+	var $moreFilter = $("#moreFilter a");
+	var $gridType = $("#gridType");
+	var $listType = $("#listType");
+	var $size = $("#layout a.size");
+	var $previousPage = $("#previousPage");
+	var $nextPage = $("#nextPage");
+	var $sort = $("#sort a, #sort li");
+	var $orderMenu = $("#orderMenu");
+	var $startPrice = $("#startPrice");
+	var $endPrice = $("#endPrice");
+	var $result = $("#result");
+	var $productImage = $("#result img");
+	var $addCart = $("#result a.addCart");
+	var $exchange = $("#result a.exchange");
+	var $addProductFavorite = $("#result a.addProductFavorite");
+	var $addCompare = $("#result a.addCompare");
+	
+		$filter.each(function() {
+			var $this = $(this);
+			var scrollHeight = this.scrollHeight > 0 ? this.scrollHeight: $.swap(this, {display: "block", position: "absolute", visibility: "hidden"}, function() {
+				return this.scrollHeight;
+			});
+			if (scrollHeight > 30) {
+				if ($this.find("a.current").size() > 0) {
+					$this.height("auto");
+				} else {
+					$this.find("dd.moreOption").show();
+				}
+			}
+		});
+		
+		$moreOption.click(function() {
+			var $this = $(this);
+			if ($this.hasClass("close")) {
+				$this.removeClass("close");
+				$this.attr("title", "更多");
+				$this.parent().height(30);
+			} else {
+				$this.addClass("close");
+				$this.attr("title", "收起");
+				$this.parent().height("auto");
+			}
+		});
+		
+		$moreFilter.click(function() {
+			var $this = $(this);
+			if ($this.hasClass("close")) {
+				$this.removeClass("close");
+				$this.text("更多选项");
+				$hiddenFilter.hide();
+			} else {
+				$this.addClass("close");
+				$this.text("收起选项");
+				$hiddenFilter.show();
+			}
+			return false;
+		});
+		
+		$brand.click(function() {
+			var $this = $(this);
+			if ($this.hasClass("current")) {
+				$brandId.val("");
+			} else {
+				$brandId.val($this.attr("brandId"));
+			}
+			$pageNumber.val(1);
+			$productForm.submit();
+			return false;
+		});
+		
+		$attribute.click(function() {
+			var $this = $(this);
+			if ($this.hasClass("current")) {
+				$this.closest("dl").find("input").prop("disabled", true);
+			} else {
+				$this.closest("dl").find("input").prop("disabled", false).val($this.text());
+			}
+			$pageNumber.val(1);
+			$productForm.submit();
+			return false;
+		});
+	
+	var layoutType = getCookie("layoutType");
+	if (layoutType == "listType") {
+		$listType.addClass("currentList");
+		$result.removeClass("grid").addClass("list");
+	} else {
+		$gridType.addClass("currentGrid");
+		$result.removeClass("list").addClass("grid");
+	}
+	
+	$gridType.click(function() {
+		var $this = $(this);
+		if (!$this.hasClass("currentGrid")) {
+			$this.addClass("currentGrid");
+			$listType.removeClass("currentList");
+			$result.removeClass("list").addClass("grid");
+			addCookie("layoutType", "gridType");
+		}
+		return false;
+	});
+	
+	$listType.click(function() {
+		var $this = $(this);
+		if (!$this.hasClass("currentList")) {
+			$this.addClass("currentList");
+			$gridType.removeClass("currentGrid");
+			$result.removeClass("grid").addClass("list");
+			addCookie("layoutType", "listType");
+		}
+		return false;
+	});
+	
+	$size.click(function() {
+		var $this = $(this);
+		$pageNumber.val(1);
+		$pageSize.val($this.attr("pageSize"));
+		$productForm.submit();
+		return false;
+	});
+	
+	$previousPage.click(function() {
+		$pageNumber.val(0);
+		$productForm.submit();
+		return false;
+	});
+	
+	$nextPage.click(function() {
+		$pageNumber.val(2);
+		$productForm.submit();
+		return false;
+	});
+	
+	$orderMenu.hover(
+		function() {
+			$(this).children("ul").show();
+		}, function() {
+			$(this).children("ul").hide();
+		}
+	);
+	
+	$sort.click(function() {
+		var $this = $(this);
+		if ($this.hasClass("current")) {
+			$orderType.val("");
+		} else {
+			$orderType.val($this.attr("orderType"));
+		}
+		$pageNumber.val(1);
+		$productForm.submit();
+		return false;
+	});
+	
+	$startPrice.add($endPrice).focus(function() {
+		$(this).siblings("button").show();
+	});
+	
+	$startPrice.add($endPrice).keypress(function(event) {
+		return (event.which >= 48 && event.which <= 57) || (event.which == 46 && $(this).val().indexOf(".") < 0) || event.which == 8 || event.which == 13;
+	});
+	
+	$productForm.submit(function() {
+		if ($brandId.val() == "") {
+			$brandId.prop("disabled", true);
+		}
+		if ($promotionId.val() == "") {
+			$promotionId.prop("disabled", true);
+		}
+		if ($orderType.val() == "" || $orderType.val() == "topDesc") {
+			$orderType.prop("disabled", true);
+		}
+		if ($pageNumber.val() == "" || $pageNumber.val() == "1") {
+			$pageNumber.prop("disabled", true);
+		}
+		if ($pageSize.val() == "" || $pageSize.val() == "20") {
+			$pageSize.prop("disabled", true);
+		}
+		if ($startPrice.val() == "" || !/^\d+(\.\d+)?$/.test($startPrice.val())) {
+			$startPrice.prop("disabled", true);
+		}
+		if ($endPrice.val() == "" || !/^\d+(\.\d+)?$/.test($endPrice.val())) {
+			$endPrice.prop("disabled", true);
+		}
+		if ($productForm.serializeArray().length < 1) {
+			location.href = location.pathname;
+			return false;
+		}
+	});
+	
+	$productImage.lazyload({
+		threshold: 100,
+		effect: "fadeIn"
+	});
+	
+	// 加入购物车
+	$addCart.click(function() {
+		var $this = $(this);
+		var skuId = $this.attr("skuId");
+		$.ajax({
+			url: "/cart/add",
+			type: "POST",
+			data: {skuId: skuId, quantity: 1},
+			dataType: "json",
+			success: function() {
+				if ($headerCart.size() > 0 && window.XMLHttpRequest) {
+					var $image = $this.closest("li").find("img");
+					var cartOffset = $headerCart.offset();
+					var imageOffset = $image.offset();
+					$image.clone().css({
+						width: 170,
+						height: 170,
+						position: "absolute",
+						"z-index": 20,
+						top: imageOffset.top,
+						left: imageOffset.left,
+						opacity: 0.8,
+						border: "1px solid #dddddd",
+						"background-color": "#eeeeee"
+					}).appendTo("body").animate({
+						width: 30,
+						height: 30,
+						top: cartOffset.top,
+						left: cartOffset.left,
+						opacity: 0.2
+					}, 1000, function() {
+						$(this).remove();
+					});
+				}
+			}
+		});
+		return false;
+	});
+	
+	// 积分兑换
+	$exchange.click(function() {
+		var skuId = $(this).attr("skuId");
+		$.ajax({
+			url: "/order/check_exchange",
+			type: "GET",
+			data: {skuId: skuId, quantity: 1},
+			dataType: "json",
+			cache: false,
+			success: function() {
+				location.href = "/order/checkout?type=exchange&skuId=" + skuId + "&quantity=1";
+			}
+		});
+		return false;
+	});
+	
+	// 添加SKU收藏
+	$addProductFavorite.click(function() {
+		var productId = $(this).attr("productId");
+		$.ajax({
+			url: "/member/product_favorite/add",
+			type: "POST",
+			data: {productId: productId},
+			dataType: "json",
+		});
+		return false;
+	});
+	
+	// 对比栏
+	var compareProduct = getCookie("compareProduct");
+	var compareProductIds = compareProduct != null ? compareProduct.split(","): [];
+	if (compareProductIds.length > 0) {
+		$.ajax({
+			url: "/product/compare_bar",
+			type: "GET",
+			data: {productIds: compareProductIds},
+			dataType: "json",
+			cache: true,
+			success: function(data) {
+				$.each(data, function (i, item) {
+					var thumbnail = item.thumbnail != null ? item.thumbnail: "/upload/image/default_thumbnail.jpg";
+					$compareBar.find("dt").after(
+'<dd> <input type="hidden" name="productIds" value="' + item.id + '" \/> <a href="' + escapeHtml(item.path) + '" target="_blank"> <img src="' + escapeHtml(thumbnail) + '" \/> <span title="' + escapeHtml(item.name) + '">' + escapeHtml(abbreviate(item.name, 50)) + '<\/span> <\/a> <strong>' + currency(item.price, true) + '<del>' + currency(item.marketPrice, true) + '<\/del><\/strong> <a href="javascript:;" class="remove" productId="' + item.id + '">[删除]<\/a> <\/dd>'					);
+				});
+				$compareBar.fadeIn();
+			}
+		});
+		
+		$.each(compareProductIds, function(i, productId) { 
+			$addCompare.filter("[productId='" + productId + "']").addClass("selected");
+		});
+	}
+	
+	// 移除对比
+	$compareBar.on("click", "a.remove", function() {
+		var $this = $(this);
+		var productId = $this.attr("productId");
+		$this.closest("dd").remove();
+		for (var i = 0; i < compareProductIds.length; i ++) {
+			if (compareProductIds[i] == productId) {
+				compareProductIds.splice(i, 1);
+				break;
+			}
+		}
+		$addCompare.filter("[productId='" + productId + "']").removeClass("selected");
+		if (compareProductIds.length == 0) {
+			$compareBar.fadeOut();
+			removeCookie("compareProduct");
+		} else {
+			addCookie("compareProduct", compareProductIds.join(","));
+		}
+		return false;
+	});
+	
+	$compareSubmit.click(function() {
+		if (compareProductIds.length < 2) {
+			$.alert("至少需要两个对比商品");
+			return false;
+		}
+		
+		$compareForm.submit();
+		return false;
+	});
+	
+	// 清除对比
+	$clearCompare.click(function() {
+		$addCompare.removeClass("selected");
+		$compareBar.fadeOut().find("dd:not(.action)").remove();
+		compareProductIds = [];
+		removeCookie("compareProduct");
+		return false;
+	});
+	
+	// 添加对比
+	$addCompare.click(function() {
+		var $this = $(this);
+		var productId = $this.attr("productId");
+		if ($.inArray(productId, compareProductIds) >= 0) {
+			return false;
+		}
+		if (compareProductIds.length >= 4) {
+			$.alert("最多只允许添加4个对比商品");
+			return false;
+		}
+		$.ajax({
+			url: "/product/add_compare",
+			type: "GET",
+			data: {productId: productId},
+			dataType: "json",
+			cache: false,
+			success: function(data) {
+				$this.addClass("selected");
+				var thumbnail = data.thumbnail != null ? data.thumbnail: "/upload/image/default_thumbnail.jpg";
+				$compareBar.show().find("dd.action").before(
+'<dd> <input type="hidden" name="productIds" value="' + data.id + '" \/> <a href="' + escapeHtml(data.path) + '" target="_blank"> <img src="' + escapeHtml(thumbnail) + '" \/> <span title="' + escapeHtml(data.name) + '">' + escapeHtml(abbreviate(data.name, 50)) + '<\/span> <\/a> <strong>' + currency(data.price, true) + '<del>' + currency(data.marketPrice, true) + '<\/del><\/strong> <a href="javascript:;" class="remove" productId="' + data.id + '">[删除]<\/a> <\/dd>'				);
+				compareProductIds.unshift(productId);
+				addCookie("compareProduct", compareProductIds.join(","));
+			}
+		});
+		return false;
+	});
+	
+	$.pageSkip = function(pageNumber) {
+		$pageNumber.val(pageNumber);
+		$productForm.submit();
+		return false;
+	}
+
+});
+</script>
+</head>
+<body>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $window = $(window);
+	var $headerName = $("#headerName");
+	var $headerLogin = $("#headerLogin");
+	var $headerRegister = $("#headerRegister");
+	var $headerLogout = $("#headerLogout");
+	var $productSearchForm = $("#productSearchForm");
+	var $productSearchKeyword = $("#productSearchForm [name='keyword']");
+	var $headerCart = $("#headerCart");
+	var $headerCartQuantity = $("#headerCart a.cartButton em");
+	var $headerCartDetail = $("#headerCart div.detail");
+	var $headerCartItems = $("#headerCart div.items");
+	var $headerCartSummary = $("#headerCart div.summary");
+	var $broadsideNav = $("#broadsideNav");
+	var currentMemberUsername = getCookie("currentMemberUsername");
+	var defaultProductSearchKeyword = "搜索 商品/店铺";
+	
+	if ($.trim(currentMemberUsername) != "") {
+		$headerName.text(currentMemberUsername).show();
+		$headerLogout.show();
+	} else {
+		$headerLogin.show();
+		$headerRegister.show();
+	}
+	
+	$productSearchKeyword.focus(function() {
+		if ($.trim($productSearchKeyword.val()) == defaultProductSearchKeyword) {
+			$productSearchKeyword.val("");
+		}
+	});
+	
+	$productSearchKeyword.blur(function() {
+		if ($.trim($productSearchKeyword.val()) == "") {
+			$productSearchKeyword.val(defaultProductSearchKeyword);
+		}
+	});
+	
+	$productSearchForm.submit(function() {
+		if ($.trim($productSearchKeyword.val()) == "" || $productSearchKeyword.val() == defaultProductSearchKeyword) {
+			return false;
+		}
+	});
+	
+	// 购物车信息
+	$window.on("cartInfoLoad", function(event, cartInfo) {
+		var skuQuantity = cartInfo != null && cartInfo.skuQuantity != null ? cartInfo.skuQuantity : 0;
+		var effectivePrice = cartInfo != null && cartInfo.effectivePrice != null ? cartInfo.effectivePrice : 0;
+		if ($headerCartQuantity.text() != skuQuantity && "opacity" in document.documentElement.style) {
+			$headerCartQuantity.fadeOut(function() {
+				$headerCartQuantity.text(skuQuantity).fadeIn();
+			});
+		} else {
+			$headerCartQuantity.text(skuQuantity);
+		}
+		var cartItems = cartInfo.items;
+		if(cartItems == null || cartItems.length <= 0){
+			$headerCartItems.html(
+'<table> <tr> <td>购物车是空的，请去挑选您的商品！<\/td> <\/tr> <\/table>'			);
+		} else {
+			var $headerCartTable = $headerCartItems.html('<table id="cartTable"><\/table>');
+			$.each(cartItems, function(i, cartItem) {
+				$('#cartTable').append(
+'<tr> <td> <a href="' + cartItem.skuPath + '"> <img src="' + cartItem.skuThumbnail + '" \/> <\/a> <\/td> <td> <a href="' + cartItem.skuPath + '">' + escapeHtml(abbreviate(cartItem.skuName, 20, "...")) + '<\/a> <\/td> <td> <span>' + currency(cartItem.price, true, false) + '<\/span>&nbsp; &nbsp;<em>x' + cartItem.quantity + '<\/em> <\/td> <\/tr>'				);
+			});
+		}
+		$headerCartSummary.html(message('共<em>{0}<\/em>件商品', skuQuantity) + '&nbsp;&nbsp;&nbsp;&nbsp;共计: <em>' + currency(effectivePrice, true, true) + '<\/em><a href="/cart/list">商品结算<\/a>');
+	});
+	
+	// 购物车详情
+	$headerCart.hover(
+		function() {
+			if ($headerCartDetail.is(":hidden")) {
+				$headerCart.addClass("active");
+				$headerCartDetail.slideDown("fast");
+			}
+		},
+		function() {
+			if ($headerCartDetail.is(":visible")) {
+				$headerCart.removeClass("active");
+				$headerCartDetail.slideUp("fast");
+			}
+		}
+	);
+	
+	$broadsideNav.find("li").hover(
+		function() {
+			$(this).find("em").show();
+		},function(){
+			$(this).find("em").hide();
+		}
+	);
+
+});
+</script>
+<div class="header">
+	<div class="top">
+		<div class="topNav">
+			<ul class="left">
+				<li>
+					<span>您好，欢迎来到橙子购物商城</span>
+					<span id="headerName" class="headerName">&nbsp;</span>
+				</li>
+				<li id="headerLogin" class="headerLogin" style="display: list-item;">
+					<a href="http://www.chengzigouwu.com/member/login">登录</a>|
+				</li>
+				<li id="headerRegister" class="headerRegister" style="display: list-item;">
+					<a href="http://www.chengzigouwu.com/member/register">注册</a>
+				</li>
+				<li id="headerLogout" class="headerLogout">
+					<a href="http://www.chengzigouwu.com/member/logout">[退出]</a>
+				</li>
+			</ul>
+			<ul class="right">
+						<li>
+							<a href="http://www.chengzigouwu.com/member/index">会员中心</a>
+							|
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/business/index">商家中心</a>
+							|
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/article/list/3">帮助中心</a>
+							
+						</li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="span3">
+				<a href="http://www.chengzigouwu.com/">
+					<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/b8b50fd7-8f4d-456e-821b-0c0f9d29c123.png" alt="橙子购物商城">
+				</a>
+			</div>
+			<div class="span6">
+				<div class="search">
+					<form id="productSearchForm" action="/product/search" method="get">
+						<input name="keyword" class="keyword" value="搜索 商品/店铺" autocomplete="off" x-webkit-speech="x-webkit-speech" x-webkit-grammar="builtin:search" maxlength="30">
+						<button type="submit">&nbsp;</button>
+					</form>
+				</div>
+				<div class="hotSearch">
+						热门搜索:
+							<a href="http://www.chengzigouwu.com/product/search?keyword=%E6%B4%97%E9%9D%A2%E5%A5%B6%20%E5%B0%BF%E4%B8%8D%E6%B9%BF%20%E6%B4%97%E8%A1%A3%E6%B6%B2%20%E8%91%A1%E8%90%84%E9%85%92">洗面奶 尿不湿 洗衣液 葡萄酒</a>
+				</div>
+			</div>
+			<div id="headerCart" class="headerCart">
+				<a class="cartButton" href="http://www.chengzigouwu.com/cart/list"><span>购物车(<em style="display: inline;">1</em>)</span></a>
+				<div class="detail">
+					<div class="title">购物车商品</div>
+					<div class="items"><table id="cartTable"><tbody><tr> <td> <a href="http://www.chengzigouwu.com/product/detail/1042"> <img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/dc58faa8-3a96-459b-aef6-a1c47b286cf0_thumbnail.jpg"> </a> </td> <td> <a href="http://www.chengzigouwu.com/product/detail/1042">嘉娜宝肌美精 3D超渗...</a> </td> <td> <span>￥68.00</span>&nbsp; &nbsp;<em>x1</em> </td> </tr></tbody></table></div>
+					<div class="summary">共<em>1</em>件商品&nbsp;&nbsp;&nbsp;&nbsp;共计: <em>￥68.00元</em><a href="http://www.chengzigouwu.com/cart/list">商品结算</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span12">
+				<dl class="mainNav">
+					<dt>
+						<a href="http://www.chengzigouwu.com/product_category">所有商品分类</a>
+					</dt>
+							<dd>
+								<a href="http://www.chengzigouwu.com/">首页</a>
+							</dd>
+							<dd>
+								<a href="http://www.chengzigouwu.com/product/list/1">母婴用品</a>
+							</dd>
+							<dd>
+								<a href="http://www.chengzigouwu.com/product/list/4">服装鞋饰</a>
+							</dd>
+							<dd>
+								<a href="http://www.chengzigouwu.com/product/list/5">化妆护理</a>
+							</dd>
+							<dd>
+								<a href="http://www.chengzigouwu.com/product/list/6">生活家用</a>
+							</dd>
+							<dd>
+								<a href="http://www.chengzigouwu.com/product/list/308">食品酒水</a>
+							</dd>
+				</dl>
+			</div>
+		</div>
+		<div id="broadsideNav" class="broadsideNav">
+			<ul>
+				<li class="shoppingCart">
+					<a href="http://www.chengzigouwu.com/cart/list"><em>购物车</em></a>
+				</li>
+				<li class="memberCenter">
+					<a href="http://www.chengzigouwu.com/member/index"><em>会员中心</em></a>
+				</li>
+				<li class="myCoupons">
+					<a href="http://www.chengzigouwu.com/member/coupon_code/exchange"><em>我的优惠券</em></a>
+				</li>
+				<li class="collectCenter">
+					<a href="http://www.chengzigouwu.com/member/product_favorite/list"><em>我的收藏</em></a>
+				</li>
+			</ul>
+			<div id="goTop" class="goTop"></div>
+		</div>
+	</div>
+</div>	<div class="container products">
+		<div id="compareBar" class="compareBar">
+			<form action="/product/compare" method="get">
+				<dl>
+					<dt>对比栏</dt>
+					<dd class="action">
+						<a href="javascript:;" class="submit">对 比</a>
+						<a href="javascript:;" class="clear">清 空</a>
+					</dd>
+				</dl>
+			</form>
+		</div>
+		<div class="row">
+			<div class="span2">
+	<div class="hotProductCategory">
+			<dl class="odd clearfix">
+				<dt>
+					<a href="http://www.chengzigouwu.com/product/list/5">化妆护理</a>
+				</dt>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/31">面部护肤</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/35">香水彩妆</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/32">身体护肤</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/33">口腔护理</a>
+						</dd>
+			</dl>
+			<dl class="even clearfix">
+				<dt>
+					<a href="http://www.chengzigouwu.com/product/list/308">食品酒水</a>
+				</dt>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/354">进口食品</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/353">休闲食品</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/310">中外美酒</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/309">茗茶</a>
+						</dd>
+			</dl>
+			<dl class="odd clearfix">
+				<dt>
+					<a href="http://www.chengzigouwu.com/product/list/1">母婴用品</a>
+				</dt>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/251">奶粉</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/301">营养辅食</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/351">婴儿用品</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/412">母婴服饰</a>
+						</dd>
+			</dl>
+			<dl class="even clearfix">
+				<dt>
+					<a href="http://www.chengzigouwu.com/product/list/4">服装鞋靴</a>
+				</dt>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/26">品质男装</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/27">时尚女装</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/28">精品内衣</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/29">精品男鞋</a>
+						</dd>
+			</dl>
+			<dl class="odd clearfix">
+				<dt>
+					<a href="http://www.chengzigouwu.com/product/list/6">家居生活</a>
+				</dt>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/36">家纺布艺</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/39">生活日用</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/40">清洁用品</a>
+						</dd>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/302">厨房用品</a>
+						</dd>
+			</dl>
+			<dl class="even clearfix">
+				<dt>
+					<a href="http://www.chengzigouwu.com/product/list/312">宠物用品</a>
+				</dt>
+						<dd>
+							<a href="http://www.chengzigouwu.com/product/list/316">宠物生活</a>
+						</dd>
+			</dl>
+	</div>
+		<div class="hotProduct">
+			<dl>
+				<dt>热销商品</dt>
+					<dd>
+						<a href="http://www.chengzigouwu.com/product/detail/551">
+							<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/0b308ab9-706e-41fd-a5b2-2061cd96410c_thumbnail.jpg" alt="日本贝亲母乳实感宽口PPSU奶瓶160ml绿色 (新款）">
+							<span title="日本贝亲母乳实感宽口PPSU奶瓶160ml绿色 (新款）">日本贝亲母乳实感宽口PPSU奶瓶160ml绿色 (新款）</span>
+						</a>
+						<strong>
+							￥125.00
+								<del>￥150.00</del>
+						</strong>
+					</dd>
+					<dd>
+						<a href="http://www.chengzigouwu.com/product/detail/552">
+							<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/0826a778-5527-4200-9cbc-a350d2be2439_thumbnail.jpg" alt="日本贝亲母乳实感宽口PPSU奶瓶240ml绿色 (新款）">
+							<span title="日本贝亲母乳实感宽口PPSU奶瓶240ml绿色 (新款）">日本贝亲母乳实感宽口PPSU奶瓶240ml绿色 (新款）</span>
+						</a>
+						<strong>
+							￥135.00
+								<del>￥162.00</del>
+						</strong>
+					</dd>
+					<dd>
+						<a href="http://www.chengzigouwu.com/product/detail/553">
+							<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/d1875d77-ed9b-4690-ac40-3747e9af8d9a_thumbnail.jpg" alt="日本贝亲母乳实感宽口PPSU奶瓶240ml橙色(新款）">
+							<span title="日本贝亲母乳实感宽口PPSU奶瓶240ml橙色(新款）">日本贝亲母乳实感宽口PPSU奶瓶240ml橙色(新款）</span>
+						</a>
+						<strong>
+							￥135.00
+								<del>￥162.00</del>
+						</strong>
+					</dd>
+			</dl>
+		</div>
+			</div>
+			<div class="span10">
+				<div class="breadcrumb">
+					<ul>
+						<li>
+							<a href="http://www.chengzigouwu.com/">首页</a>
+						</li>
+							<li>母婴用品</li>
+					</ul>
+				</div>
+				<form id="productForm" action="/product/list/1" method="get">
+					<input type="hidden" name="storeProductCategoryId" value="">
+					<input type="hidden" id="brandId" name="brandId" value="">
+					<input type="hidden" id="promotionId" name="promotionId" value="">
+					<input type="hidden" id="orderType" name="orderType" value="">
+					<input type="hidden" id="type" name="type" value="">
+					<input type="hidden" id="pageNumber" name="pageNumber" value="1">
+					<input type="hidden" id="pageSize" name="pageSize" value="20">
+							<div id="filter" class="filter">
+								<div class="title">筛选商品</div>
+								<div class="content">
+										<dl class="clearfix">
+											<dt>分类:</dt>
+												<dd>
+													<a href="http://www.chengzigouwu.com/product/list/251">奶粉</a>
+												</dd>
+												<dd>
+													<a href="http://www.chengzigouwu.com/product/list/301">营养辅食</a>
+												</dd>
+												<dd>
+													<a href="http://www.chengzigouwu.com/product/list/351">婴儿用品</a>
+												</dd>
+												<dd>
+													<a href="http://www.chengzigouwu.com/product/list/412">母婴服饰</a>
+												</dd>
+											<dd class="moreOption" title="更多"></dd>
+										</dl>
+								</div>
+								<div id="moreFilter" class="moreFilter">
+										
+								</div>
+							</div>
+					<div class="bar">
+						<div id="layout" class="layout">
+							<label>布局:</label>
+							<a href="javascript:;" id="gridType" class="gridType currentGrid">
+								<span></span>
+							</a>
+							<a href="javascript:;" id="listType" class="listType">
+								<span></span>
+							</a>
+							<label>数量:</label>
+							<a href="javascript:;" class="size current" pagesize="20">
+								<span>20</span>
+							</a>
+							<a href="javascript:;" class="size" pagesize="40">
+								<span>40</span>
+							</a>
+							<a href="javascript:;" class="size" pagesize="80">
+								<span>80</span>
+							</a>
+							<span class="page">
+								<label>共51个商品 1/3</label>
+										<a href="javascript:;" id="nextPage" class="nextPage">
+											<span>下一页</span>
+										</a>
+							</span>
+						</div>
+						<div id="sort" class="sort">
+							<div id="orderMenu" class="orderMenu">
+									<span>置顶降序</span>
+								<ul>
+										<li ordertype="topDesc">置顶降序</li>
+										<li ordertype="priceAsc">价格升序</li>
+										<li ordertype="priceDesc">价格降序</li>
+										<li ordertype="salesDesc">销量降序</li>
+										<li ordertype="scoreDesc">评分降序</li>
+										<li ordertype="dateDesc">日期降序</li>
+								</ul>
+							</div>
+							<a href="javascript:;" class="asc" ordertype="priceAsc">价格从低到高</a>
+							<a href="javascript:;" class="desc" ordertype="salesDesc">销量</a>
+							<a href="javascript:;" class="desc" ordertype="scoreDesc">评分</a>
+							<input type="text" id="startPrice" name="startPrice" class="startPrice" maxlength="16" title="价格过滤最低价格" onpaste="return false">
+							<label>-</label>
+							<input type="text" id="endPrice" name="endPrice" class="endPrice" maxlength="16" title="价格过滤最高价格" onpaste="return false">
+							<button type="submit">确 定</button>
+						</div>
+					</div>
+					<div id="result" class="result grid clearfix">
+							<ul>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/758">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/23f6b620-734e-44e0-ad7b-525c795ad4fd_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201802/23f6b620-734e-44e0-ad7b-525c795ad4fd_thumbnail.jpg" style="display: inline;">
+											<div>
+												日本贝亲液体爽身粉热痱新生儿婴儿童宝宝去痱子粉贝
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥99.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="858">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="758"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="758"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/615">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/12d18dc4-0319-4f4b-a94f-103106df277a_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201802/12d18dc4-0319-4f4b-a94f-103106df277a_thumbnail.jpg" style="display: inline;">
+											<div>
+												日本贝亲pigeon婴儿手口湿巾盒(内含70抽湿巾一包) 
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥37.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="715">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="615"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="615"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/614">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/66caa60d-21d6-48da-8c83-335fd3488dbd_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201802/66caa60d-21d6-48da-8c83-335fd3488dbd_thumbnail.jpg" style="display: inline;">
+											<div>
+												日本原装进口Pigeon贝亲婴幼儿奶瓶或蔬菜清洗液700m
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥60.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="714">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="614"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="614"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/613">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/08ca23f9-093c-4634-869a-37fe92ddb9cf_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201802/08ca23f9-093c-4634-869a-37fe92ddb9cf_thumbnail.jpg" style="display: inline;">
+											<div>
+												日本原装贝亲婴幼儿奶瓶或蔬菜清洗液800ml瓶装
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥75.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="713">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="613"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="613"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/612">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/a7bc7a6e-2336-4232-bddd-bc8b921dbfc0_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201802/a7bc7a6e-2336-4232-bddd-bc8b921dbfc0_thumbnail.jpg" style="display: inline;">
+											<div>
+												贝亲日本原装贝亲婴幼儿无添加去污洗衣液600ml
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥69.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="712">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="612"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="612"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/611">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/a98c6cf1-c57a-4668-9c18-58093eaf1813_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201802/a98c6cf1-c57a-4668-9c18-58093eaf1813_thumbnail.jpg" style="display: inline;">
+											<div>
+												贝亲日本原装贝亲婴幼儿无添加去污洗衣液500ml补充
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥52.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="711">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="611"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="611"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/610">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/3d334072-74d2-45ba-af26-d4bd4fd61040_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201802/3d334072-74d2-45ba-af26-d4bd4fd61040_thumbnail.jpg" style="display: inline;">
+											<div>
+												贝亲无添加温和婴儿洗衣液720ml（替换装）新款【日本
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥60.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="710">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="610"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="610"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/609">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/ebb6260b-649a-41ca-b832-fd5ff3896367_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201802/ebb6260b-649a-41ca-b832-fd5ff3896367_thumbnail.jpg" style="display: inline;">
+											<div>
+												贝亲（Pigeon）无添加温和婴儿洗衣液800ml桶装（新
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥80.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="709">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="609"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="609"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/608">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/80df01d8-5039-453e-8e20-079a709d0407_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201802/80df01d8-5039-453e-8e20-079a709d0407_thumbnail.jpg" style="display: inline;">
+											<div>
+												贝亲直向旋转双向两用刷
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥49.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="708">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="608"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="608"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/607">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/1012d6ef-e321-49ae-80d3-bb07be6e2709_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201802/1012d6ef-e321-49ae-80d3-bb07be6e2709_thumbnail.jpg" style="display: inline;">
+											<div>
+												贝亲奶瓶刷 婴儿奶嘴刷套装 尼龙奶瓶刷/奶嘴刷清洗
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥49.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="707">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="607"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="607"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/606">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/b74c6e80-43e6-4b17-b17e-760dc95adc1e_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201802/b74c6e80-43e6-4b17-b17e-760dc95adc1e_thumbnail.jpg" style="display: inline;">
+											<div>
+												贝亲Pigeon母乳实感宽口径奶瓶专用奶嘴刷
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥34.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="706">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="606"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="606"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/605">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/7ca8befa-457e-4e72-8022-3a44ff2cf08b_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201801/7ca8befa-457e-4e72-8022-3a44ff2cf08b_thumbnail.jpg" style="display: inline;">
+											<div>
+												贝亲（Pigeon）宽口径玻璃 仿母乳实感耐热奶瓶240ml
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥148.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="705">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="605"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="605"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/604">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/b1635dd3-3263-4192-b0c3-95cc422b5744_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201801/b1635dd3-3263-4192-b0c3-95cc422b5744_thumbnail.jpg" style="display: inline;">
+											<div>
+												贝亲宽口径玻璃 仿母乳实感耐热奶瓶160ml 绿色配通
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥165.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="704">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="604"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="604"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/603">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/2244fb44-247a-41c2-a7cb-ac51a43635f3_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201801/2244fb44-247a-41c2-a7cb-ac51a43635f3_thumbnail.jpg" style="display: inline;">
+											<div>
+												贝亲 Pigeon 宽口玻璃仿母乳实感耐热奶瓶240ml橙色
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥148.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="703">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="603"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="603"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/602">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/2336866d-880b-4fd5-a102-db68b96512e8_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201801/2336866d-880b-4fd5-a102-db68b96512e8_thumbnail.jpg" style="display: inline;">
+											<div>
+												贝亲 日本原装进口宽口径奶瓶母乳实感防胀气耐热奶
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥125.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="702">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="602"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="602"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/601">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/59bde6ae-efad-43fd-ae71-84f2627eb2e7_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201801/59bde6ae-efad-43fd-ae71-84f2627eb2e7_thumbnail.jpg" style="display: inline;">
+											<div>
+												贝亲 日本原装进口宽口径奶瓶母乳实感防胀气耐热奶
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥125.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="701">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="601"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="601"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/577">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/e9617124-8518-4e28-bd89-1b1a3b6df790_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201801/e9617124-8518-4e28-bd89-1b1a3b6df790_thumbnail.jpg" style="display: inline;">
+											<div>
+												日本大王纸尿裤维E短裤系列女宝宝XXL28片超棉柔透气
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥109.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="677">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="577"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="577"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/576">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/df14ec5b-d721-4ba4-b092-4edc633fb60a_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201801/df14ec5b-d721-4ba4-b092-4edc633fb60a_thumbnail.jpg" style="display: inline;">
+											<div>
+												日本大王维E系列学步裤男 XXL28片(13-25kg) 原装进
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥109.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="676">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="576"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="576"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/575">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/5c89887e-ccdf-41e7-879d-830e4d45edc8_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201801/5c89887e-ccdf-41e7-879d-830e4d45edc8_thumbnail.jpg" style="display: inline;">
+											<div>
+												日本大王维E系列学步裤女 XL38片(12-20kg) 原装进口
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥109.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="675">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="575"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="575"></a>
+										</div>
+									</li>
+									<li>
+										<a href="http://www.chengzigouwu.com/product/detail/574">
+											<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/5c46cbc2-f485-43a2-ad62-647f51c1cbcb_thumbnail.jpg" data-original="http://www.chengzigouwu.com/upload/image/201801/5c46cbc2-f485-43a2-ad62-647f51c1cbcb_thumbnail.jpg" style="display: inline;">
+											<div>
+												日本大王维E系列 学步裤男 XL38片(12-20kg) 原装进
+											</div>
+										</a>
+										<strong class="text-ellipsis">
+												￥109.00
+										</strong>
+										<div class="listShop">
+											<div class="shopName">
+												<a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+											</div>
+										</div>
+										<div class="action">
+												<a href="javascript:;" class="addCart" skuid="674">加入购物车</a>
+											<a href="javascript:;" class="addProductFavorite" title="收藏" productid="574"></a>
+											<a href="javascript:;" class="addCompare" title="对比" productid="574"></a>
+										</div>
+									</li>
+							</ul>
+					</div>
+							<div class="pagination">
+									<span class="firstPage">首页</span>
+									<span class="previousPage">上一页</span>
+										<span class="currentPage">1</span>
+										<a href="javascript: $.pageSkip(2);">2</a>
+										<a href="javascript: $.pageSkip(3);">3</a>
+									<a href="javascript: $.pageSkip(2);" class="nextPage">下一页</a>
+									<a href="javascript: $.pageSkip(3);" class="lastPage">末页</a>
+							</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<div class="footer">
+	<div class="service clearfix">
+		<dl>
+			<dt class="icon1">新手指南</dt>
+			<dd>
+				<a href="#">购物流程</a>
+			</dd>
+			<dd>
+				<a href="#">会员注册</a>
+			</dd>
+			<dd>
+				<a href="#">购买宝贝</a>
+			</dd>
+			<dd>
+				<a href="#">支付货款</a>
+			</dd>
+			<dd>
+				<a href="#">用户协议</a>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="icon2">特色服务</dt>
+			<dd>
+				<a href="#">购物流程</a>
+			</dd>
+			<dd>
+				<a href="#">会员注册</a>
+			</dd>
+			<dd>
+				<a href="#">购买宝贝</a>
+			</dd>
+			<dd>
+				<a href="#">支付货款</a>
+			</dd>
+			<dd>
+				<a href="#">用户协议</a>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="icon3">支付方式</dt>
+			<dd>
+				<a href="#">购物流程</a>
+			</dd>
+			<dd>
+				<a href="#">会员注册</a>
+			</dd>
+			<dd>
+				<a href="#">购买宝贝</a>
+			</dd>
+			<dd>
+				<a href="#">支付货款</a>
+			</dd>
+			<dd>
+				<a href="#">用户协议</a>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="icon4">配送方式</dt>
+			<dd>
+				<a href="#">购物流程</a>
+			</dd>
+			<dd>
+				<a href="#">会员注册</a>
+			</dd>
+			<dd>
+				<a href="#">购买宝贝</a>
+			</dd>
+			<dd>
+				<a href="#">支付货款</a>
+			</dd>
+			<dd>
+				<a href="#">用户协议</a>
+			</dd>
+		</dl>
+		<div class="qrCode">
+			<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/qrcode.jpg" alt="官方微信">
+			官方微信
+		</div>
+		<div class="qrCode" style="border-left:0px solid #e8e8e8">
+			<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/app_code.png" alt="手机APP">
+			手机APP
+		</div>
+	</div>
+	<div class="bottom">
+		<div class="bottomNav">
+			<ul>
+						<li>
+							<a href="#">关于我们</a>
+							|
+						</li>
+						<li>
+							<a href="#">联系我们</a>
+							|
+						</li>
+						<li>
+							<a href="#">诚聘英才</a>
+							|
+						</li>
+						<li>
+							<a href="#">隐私政策</a>
+							|
+						</li>
+						<li>
+							<a href="#">法律声明</a>
+							|
+						</li>
+						<li>
+							<a href="#">客户服务</a>
+							|
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/friend_link">友情链接</a>
+							
+						</li>
+			</ul>
+		</div>
+		<div class="info">
+			<p>黔ICP备17008572号-1</p>
+			<p>Copyright © 2005-2017 橙子购物商城 版权所有</p>
+				<ul>
+						<li>
+							<a href="http://www.chengzigouwu.com/" target="_blank">
+								<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/ae13eddc-25ac-427a-875d-d1799d751076.gif" alt="支付宝">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/" target="_blank">
+								<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/adaa9ac5-9994-4aa3-a336-b65613c85d50.gif" alt="财付通">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/" target="_blank">
+								<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/41c18c8d-f69a-49fe-ace3-f16c2eb07983.gif" alt="中国银联">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.kuaidi100.com/" target="_blank">
+								<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/ea46ca0a-e8f0-4e2c-938a-5cb19a07cb9a.gif" alt="快递100">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/" target="_blank">
+								<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/e12f226b-07f9-4895-bcc2-78dbe551964b.gif" alt="站长统计">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/" target="_blank">
+								<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/fd9d6268-e4e2-41f6-856d-4cb8a49eadd1.gif" alt="A5下载">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/" target="_blank">
+								<img src="%E6%AF%8D%E5%A9%B4%E7%94%A8%E5%93%81%20-%20Powered%20By%20chengzi_files/6c57f398-0498-4044-80d8-20f6c40d5cef.gif" alt="中国建设银行">
+							</a>
+						</li>
+				</ul>
+		</div>
+	</div>
+</div>
+
+<div class="goTop" style="display: none;"><a href="javascript:;">&nbsp;</a><a href="javascript:;">&nbsp;</a></div></body></html>

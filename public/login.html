@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>会员登录</title>
+    
+    <link href="css/common.css" rel="stylesheet" type="text/css">
+    <link href="css/public.css" rel="stylesheet" type="text/css">
+    
+</head>
+<body>
+        <div class="header" style="margin-bottom:10px">
+                <div class="top">
+                    <div class="topNav">
+                        <ul class="left">
+                            <li>
+                                <span>您好，欢迎来到橙子购物商城</span>
+                                <span id="headerName" class="headerName">&nbsp;</span>
+                            </li>
+                            <li id="headerLogin" class="headerLogin" style="display: list-item;">
+                                <a href="login.html">登录</a>
+                            </li>
+                            <li id="headerRegister" class="headerRegister" style="display: list-item;">
+                                <a href="registered.html">注册</a>
+                            </li>
+                            <li id="headerLogout" class="headerLogout logout">
+                                <a>[退出]</a>
+                            </li>
+                        </ul>
+                        <ul class="right">
+                                    <li>
+                                        <a>会员中心</a>
+                                    </li>
+                                    <li>
+                                        <a>商家中心</a>
+                                    </li>
+                                    <li>
+                                        <a >帮助中心</a>
+                                    </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row clear">
+                        <div class="span3">
+                             <a href="#">
+                                <img src="../img/b8b50fd7-8f4d-456e-821b-0c0f9d29c123.png" alt="橙子购物商城">
+                            </a>
+                        </div>
+                        <div class="span6">
+                            <div class="search">
+                                <form id="productSearchForm" method="get">
+                                    <input name="keyword" class="keyword" value="搜索 商品/店铺" >
+                                    <button type="submit">&nbsp;</button>
+                                </form>
+                            </div>
+                            <div class="hotSearch">
+                                    热门搜索:
+                                         <a href="#">洗面奶 尿不湿 洗衣液 葡萄酒</a>
+                            </div>
+                        </div>
+                        <div id="headerCart" class="headerCart">
+                            <a   class="cartButton" <a href="#"><span>购物车(<em>0</em>)</span></a>
+                            <div class="detail" style="display: none;">
+                                <div class="title">购物车商品</div>
+                                <div class="items"><table> <tbody><tr> <td>购物车是空的，请去挑选您的商品！</td> </tr> </tbody></table></div>
+                                <div class="summary">共<em>0</em>件商品&nbsp;&nbsp;&nbsp;&nbsp;共计: <em>￥0.00元</em><a   <a href="#">商品结算</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clear">
+                        <div class="span12">
+                            <dl class="mainNav">
+                                <dt>
+                                    <a href="#">所有商品分类</a>
+                                </dt>
+                                        <dd>
+                                            <a href="index.html">首页</a>
+                                        </dd>
+                                        <dd>
+                                             <a>母婴用品</a>
+                                        </dd>
+                                        <dd>
+                                            <a>服装鞋饰</a>
+                                        </dd>
+                                        <dd>
+                                            <a >化妆护理</a>
+                                        </dd>
+                                        <dd>
+                                            <a>生活家用</a>
+                                        </dd>
+                                        <dd>
+                                            <a>食品酒水</a>
+                                        </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div id="broadsideNav" class="broadsideNav">
+                        <ul>
+                            <li class="shoppingCart">
+                                <a href="#"><em>购物车</em></a>
+                            </li>
+                            <li class="memberCenter">
+                                <a href="#"><em>会员中心</em></a>
+                            </li>
+                            <li class="myCoupons">
+                                <a href="#"><em>我的优惠券</em></a>
+                            </li>
+                            <li class="collectCenter">
+                                <a    href="#"><em>我的收藏</em></a>
+                            </li>
+                        </ul>
+                        <div id="goTop" class="goTop"></div>
+                    </div>
+                </div>
+            </div>	
+        </div>	<div class="container login">
+            <div class="row">
+                <div class="span6">
+                       <img src="../img/t7.jpg" alt="服务宣传" width="500" height="300">
+    
+                </div>
+                <div class="span6" style="margin-bottom: 10px">
+                    <div class="wrap">
+                        <div class="main">
+                            <div class="title">
+                                    <strong>会员登录</strong>USER LOGIN
+                            </div>
+                            <form id="loginForm" action="/member/login" method="post" novalidate="novalidate">
+                                <input name="socialUserId" type="hidden" value="">
+                                <input name="uniqueId" type="hidden" value="">
+                                <table>
+                                    <tbody><tr>
+                                        <th>
+                                            用户名:
+                                        </th>
+                                        <td>
+                                            <input type="text" id="username" class="username1" name="username" class="text" maxlength="200" title="用户名/E-mail/手机">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            密 码:
+                                        </th>
+                                        <td>
+                                            <input type="password" id="password" class="password1" name="password" class="text" maxlength="200" autocomplete="off">
+                                        </td>
+                                    </tr>
+                                        <tr>
+                                            <th>
+                                                验证码:
+                                            </th>
+                                            <td>
+                                                <span class="fieldSet">
+                                                    <input type="text" id="captcha" name="captcha" class="text captcha" maxlength="4" autocomplete="off"><img class="captcha-image" src="../img/yzm.jpg" title="点击更换验证码"><input name="captchaId" type="hidden" value="462EA266-A11A-4ED1-BA0A-5EE13D1AC6D0">
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <tr>
+                                        <th>
+                                            &nbsp;
+                                        </th>
+                                        <td>
+                                            <label>
+                                                <input type="checkbox" id="isRememberUsername" name="isRememberUsername" value="true">记住用户名
+                                            </label>
+                                            <label>
+                                                &nbsp;&nbsp;<a href="">忘记密码</a>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            &nbsp;
+                                        </th>
+                                        <td>
+                                                <input type="button" class="submit" value="登 录">
+                                                <span class="msg"></span>
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr class="register">
+                                        <th>
+                                            &nbsp;
+                                        </th>
+                                        <td>
+                                            <dl>
+                                                <dt>还没有注册账号？</dt>
+                                                <dd>
+                                                    立即注册即可体验在线购物！
+                                                        <a href="">立即注册</a>
+                                                </dd>
+                                            </dl>
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+                                        
+                                           
+            
+        
+    <div class="footer clear">
+        <div class="service clearfix">
+            <dl>
+                <dt class="icon1">新手指南</dt>
+                <dd>
+                    <a >购物流程</a>
+                </dd>
+                <dd>
+                    <a >会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="icon2">特色服务</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a>会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a用户协议</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="icon3">支付方式</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a>会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="icon4">配送方式</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a>会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <div class="qrCode">
+                <img src="../img/t5.jpg" alt="官方微信">
+                <p>官方微信</p>
+            </div>
+            <div class="qrCode" style="border-left:0px solid #e8e8e8">
+                <img src="../img/t6.png" alt="手机APP">
+                <p>手机APP</p>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="bottomNav">
+                <ul>
+                            <li>
+                                <a>关于我们</a>
+                                |
+                            </li>
+                            <li>
+                                <a>联系我们</a>
+                                |
+                            </li>
+                            <li>
+                                <a>诚聘英才</a>
+                                |
+                            </li>
+                            <li>
+                                <a>隐私政策</a>
+                                |
+                            </li>
+                            <li>
+                                <a>法律声明</a>
+                                |
+                            </li>
+                            <li>
+                                <a>客户服务</a>
+                                |
+                            </li>
+                            <li>
+                                <a>友情链接</a>
+                                
+                            </li>
+                </ul>
+            </div>
+            <div class="info clear" >
+                <p>黔ICP备17008572号-1</p>
+                <p>Copyright © 2005-2017 橙子购物商城 版权所有</p>
+                    <ul>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/ae13eddc-25ac-427a-875d-d1799d751076.gif" alt="支付宝">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/adaa9ac5-9994-4aa3-a336-b65613c85d50.gif" alt="财付通">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/41c18c8d-f69a-49fe-ace3-f16c2eb07983.gif" alt="中国银联">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/ea46ca0a-e8f0-4e2c-938a-5cb19a07cb9a.gif" alt="快递100">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/e12f226b-07f9-4895-bcc2-78dbe551964b.gif" alt="站长统计">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/fd9d6268-e4e2-41f6-856d-4cb8a49eadd1.gif" alt="A5下载">
+                                </a>
+                            </li>
+                            <li>
+                                <a href= target="_blank">
+                                    <img src="../img/6c57f398-0498-4044-80d8-20f6c40d5cef.gif" alt="中国建设银行">
+                                </a>
+                            </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="js/jquery.2.2.4.js"></script> 
+<script src="js/login.js"></script> 
+</html>

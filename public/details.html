@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>橙子购物商城</title>
+    
+    <link href="css/common.css" rel="stylesheet" type="text/css">
+    <link href="css/public.css" rel="stylesheet" type="text/css">
+    <link href="css/produce.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+        <div class="header">
+                <div class="top">
+                    <div class="topNav">
+                        <ul class="left">
+                            <li>
+                                <span class="login-success">您好，欢迎<span>XXX</span</span>
+                                <span id="headerName" class="headerName">&nbsp;</span>
+                            </li>
+                            <li id="headerLogin" class="headerLogin" style="display: list-item;">
+                                <a href="login.html">登录</a>
+                            </li>
+                            <li id="headerRegister" class="headerRegister" style="display: list-item;">
+                                <a href="registered.html">注册</a>
+                            </li>
+                            <li id="headerLogout" class="headerLogout logout" >
+                                <a>[退出]</a>
+                            </li>
+                        </ul>
+                        <ul class="right">
+                                    <li>
+                                        <a>会员中心</a>
+                                    </li>
+                                    <li>
+                                        <a>商家中心</a>
+                                    </li>
+                                    <li>
+                                        <a >帮助中心</a>
+                                    </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row clear">
+                        <div class="span3">
+                             <a href="#">
+                                <img src="../img/b8b50fd7-8f4d-456e-821b-0c0f9d29c123.png" alt="橙子购物商城">
+                            </a>
+                        </div>
+                        <div class="span6">
+                            <div class="search">
+                                <form id="productSearchForm" method="get">
+                                    <input name="keyword" class="keyword" value="搜索 商品/店铺" >
+                                    <button type="submit">&nbsp;</button>
+                                </form>
+                            </div>
+                            <div class="hotSearch">
+                                    热门搜索:
+                                         <a href="#">洗面奶 尿不湿 洗衣液 葡萄酒</a>
+                            </div>
+                        </div>
+                        <div id="headerCart" class="headerCart">
+                            <a   class="cartButton" <a href="#"><span>购物车(<em>0</em>)</span></a>
+                            <div class="detail" style="display: none;">
+                                <div class="title">购物车商品</div>
+                                <div class="items"><table> <tbody><tr> <td>购物车是空的，请去挑选您的商品！</td> </tr> </tbody></table></div>
+                                <div class="summary">共<em>0</em>件商品&nbsp;&nbsp;&nbsp;&nbsp;共计: <em>￥0.00元</em><a   <a href="#">商品结算</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clear">
+                        <div class="span12">
+                            <dl class="mainNav">
+                                <dt>
+                                    <a href="#">所有商品分类</a>
+                                </dt>
+                                        <dd>
+                                            <a href="index.html">首页</a>
+                                        </dd>
+                                        <dd>
+                                             <a>母婴用品</a>
+                                        </dd>
+                                        <dd>
+                                            <a>服装鞋饰</a>
+                                        </dd>
+                                        <dd>
+                                            <a >化妆护理</a>
+                                        </dd>
+                                        <dd>
+                                            <a>生活家用</a>
+                                        </dd>
+                                        <dd>
+                                            <a>食品酒水</a>
+                                        </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div id="broadsideNav" class="broadsideNav">
+                        <ul>
+                            <li class="shoppingCart">
+                                <a href="#"><em>购物车</em></a>
+                            </li>
+                            <li class="memberCenter">
+                                <a href="#"><em>会员中心</em></a>
+                            </li>
+                            <li class="myCoupons">
+                                <a href="#"><em>我的优惠券</em></a>
+                            </li>
+                            <li class="collectCenter">
+                                <a href="#"><em>我的收藏</em></a>
+                            </li>
+                        </ul>
+                        <div id="goTop" class="goTop"></div>
+                    </div>
+                </div>
+            </div>	
+            <div class="container productDetail">
+                <div class="row">
+                    <div class="span2">
+            <div class="hotProductCategory">
+                    <dl class="odd clearfix">
+                        <dt>
+                            <a href="">化妆护理</a>
+                        </dt>
+                                <dd>
+                                    <a href="">面部护肤</a>
+                                </dd>
+                                <dd>
+                                    <a href="">香水彩妆</a>
+                                </dd>
+                                <dd>
+                                    <a href="">身体护肤</a>
+                                </dd>
+                    </dl>
+                    <dl class="even clearfix">
+                        <dt>
+                            <a href="">食品酒水</a>
+                        </dt>
+                                <dd>
+                                    <a href="">进口食品</a>
+                                </dd>
+                                <dd>
+                                    <a href="">休闲食品</a>
+                                </dd>
+                                <dd>
+                                    <a href="">中外美酒</a>
+                                </dd>
+                    </dl>
+                    <dl class="odd clearfix">
+                        <dt>
+                            <a href="">母婴用品</a>
+                        </dt>
+                                <dd>
+                                    <a href="">奶粉</a>
+                                </dd>
+                                <dd>
+                                    <a href="">营养辅食</a>
+                                </dd>
+                                <dd>
+                                    <a href="">婴儿用品</a>
+                                </dd>
+                               
+                    </dl>
+                    <dl class="even clearfix">
+                        <dt>
+                            <a href="">服装鞋靴</a>
+                        </dt>
+                                <dd>
+                                    <a href="">品质男装</a>
+                                </dd>
+                                <dd>
+                                    <a href="">时尚女装</a>
+                                </dd>
+                                <dd>
+                                    <a href="">精品内衣</a>
+                                </dd>
+                         
+                    </dl>
+                    <dl class="odd clearfix">
+                        <dt>
+                            <a href="">家居生活</a>
+                        </dt>
+                                <dd>
+                                    <a href="">家纺布艺</a>
+                                </dd>
+                                <dd>
+                                    <a href="">生活日用</a>
+                                </dd>
+                                <dd>
+                                    <a href="">清洁用品</a>
+                                </dd>
+                              
+                    </dl>
+                    <dl class="even clearfix">
+                        <dt>
+                            <a href="">宠物用品</a>
+                        </dt>
+                                <dd>
+                                    <a href="">宠物生活</a>
+                                </dd>
+                    </dl>
+            </div>
+                <div class="hotProduct">
+                    <dl>
+                        <dt>热销商品</dt>
+                            <dd>
+                                <a href="">
+                                    <img src="../img/314cd31e-61d5-4950-84da-4cf503620c07_thumbnail.jpg" alt="Tom Ford 汤姆福特TF 四色眼影 哑光珠光大地色">
+                                    <span title="Tom Ford 汤姆福特TF 四色眼影 哑光珠光大地色">Tom Ford 汤姆福特TF 四色眼影 哑光珠光大地色</span>
+                                </a>
+                                <strong>
+                                    ￥530.00
+                                        <del>￥636.00</del>
+                                </strong>
+                            </dd>
+                            <dd>
+                                <a href="">
+                                    <img src="../img/8978f877-6716-4b24-9a6e-c50c5f6d4928_thumbnail.jpg" alt="Tom Ford 汤姆福特TF 黑金黑管唇膏口红 tf口红">
+                                    <span title="Tom Ford 汤姆福特TF 黑金黑管唇膏口红 tf口红">Tom Ford 汤姆福特TF 黑金黑管唇膏口红 tf口红</span>
+                                </a>
+                                <strong>
+                                    ￥356.00
+                                        <del>￥438.00</del>
+                                </strong>
+                            </dd>
+                            <dd>
+                                <a>
+                                    <img src="../img/9b4ddb47-9a95-453f-8688-e364dd6baa59_thumbnail.jpg" alt="Tom Ford 汤姆福特TF 白管口红">
+                                    <span title="Tom Ford 汤姆福特TF 白管口红">Tom Ford 汤姆福特TF 白管口红</span>
+                                </a>
+                                <strong>
+                                    ￥350.00
+                                        <del>￥438.00</del>
+                                </strong>
+                            </dd>
+                    </dl>
+                </div>
+        <div id="historyProduct" class="historyProduct">
+            <dl>
+                <dt>最近浏览过的</dt>
+                <dd> <img src=""> <a  title="Tom Ford 汤姆福特TF 黑金黑管唇膏口红 tf口红">Tom Ford 汤姆福特TF 黑金黑管</a> <strong>￥356.00</strong> </dd><dd> <img src=""> <a title="sk-ii sk2前男友面膜 skii护肤精华 10片装">sk-ii sk2前男友面膜 skii护肤</a> <strong>￥788.00</strong> </dd><dd class="last">
+                    <a href="javascript:;" class="clear">清除历史记录</a>
+                </dd>
+            </dl>
+        </div>			</div>
+                    <div class="span10">
+                        <div class="breadcrumb">
+                            <ul>
+                                <li>
+                                    <a href="index.html">首页</a>
+                                </li>
+                                        <li>
+                                            <a>化妆护理</a>
+                                        </li>
+                                <li>
+                                    <a>香水彩妆</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="productImage">
+                                <a href="" id="zoom" rel="gallery" style="outline-style: none; text-decoration: none;" title="">
+                                    <div class="zoomPad">
+                                        <img class="medium" src="http://www.chengzigouwu.com/upload/image/201804/8978f877-6716-4b24-9a6e-c50c5f6d4928_large.jpg" title="" style="opacity: 1;">
+                                        <div class="zoomPup" style="top: 71.5px; left: 71.5px; width: 157px; height: 157px; position: absolute; border-width: 1px; display: none;">
+                                        </div>
+                                    <div class="zoomWindow" style="position: absolute; z-index: 5001; left: 312px; top: 0px; display: none;">
+                                        <div class="zoomWrapper" style="width: 368px;">
+                                            <div class="zoomWrapperTitle" style="width: 100%; position: absolute; display: none;">
+                                            </div>
+                                                <div class="zoomWrapperImage" style="width: 100%; height: 368px;">
+                                                    <img style="position: absolute; border: 0px none; display: block; left: -166.833px; top: -166.833px;" src="http://www.chengzigouwu.com/upload/image/201804/8978f877-6716-4b24-9a6e-c50c5f6d4928_large.jpg">
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="zoomPreload" style="visibility: hidden; top: 146px; left: 146px; position: absolute;">
+                                </div>
+                            </div>
+                                </a>
+                            <a href="" class="prev disabled">&nbsp;</a>
+                            <div id="thumbnailScrollable" class="scrollable">
+                                <div class="items">
+                                            <a>
+                                                <img src="../img/8978f877-6716-4b24-9a6e-c50c5f6d4928_thumbnail.jpg" title="">
+                                            </a>
+                                            <a href=""class="">
+                                                <img src="../img/839d51ac-db68-4f4d-8e6a-08393311931e_thumbnail.jpg" title="">
+                                            </a>
+                                            <a >
+                                                <img src="../img/a84e8088-20da-4e9c-9938-e90c17c01600_large.jpg" title="">
+                                            </a>
+                                </div>
+                            </div>
+                            <a href="" class="next">&nbsp;</a>
+                        </div>
+                        
+                        <div class="sku">	
+                            <div class="info">
+                                <h1>
+                                    Tom Ford 汤姆福特TF 黑金黑管唇膏口红 tf口红
+                                        <em>经典黑金 极致性感</em>
+                                </h1>
+                                <dl>
+                                    <dt>编号:</dt>
+                                    <dd>
+                                        2018040421634
+                                    </dd>
+                                </dl>
+                                    <dl>
+                                        <dt>销售价:</dt>
+                                        <dd>
+                                            <strong id="price">￥348.00</strong>
+                                        </dd>
+                                            <dd>
+                                                <span>
+                                                    (<em>市场价:</em>
+                                                    <del id="marketPrice">￥438.00</del>)
+                                                </span>
+                                            </dd>
+                                    </dl>
+                                        <dl>
+                                            <dt>赠送积分:</dt>
+                                            <dd id="rewardPoint">348</dd>
+                                        </dl>
+                            </div>
+                                <div class="action">
+                                        <div id="specification" class="specification clearfix">
+                                            <div class="title">请选择商品规格</div>
+                                                <dl class="clear">
+                                                    <dt>
+                                                        <span title="规格">规格:</span>
+                                                    </dt>
+                                                            <dd>
+                                                                <a href="javascript:;" val="27" class="selected">
+                                                                    经典黑金款 #01 Spanish Pink<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" class="" val="28">
+                                                                    #04 pussycat<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" val="29" class="">
+                                                                    #15 WildGinger<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" val="30" class="">
+                                                                    #07Pink dusk<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" val="31" class="">
+                                                                    #08Velvet Cherry<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" val="32" class="">
+                                                                    #09 true coral<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" val="33" class="">
+                                                                    #39 FLASH OF PINK<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" val="34" class="">
+                                                                    #05 plum lush<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" val="35" class="">
+                                                                    #21 naked coral<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" val="36" class="">
+                                                                    #10 cherry lush<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" val="37" class="">
+                                                                    #45 SHOWGIRL<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" val="38" class="">
+                                                                    #16 Scarlet Rouge<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" val="39" class="">
+                                                                    #14 sable smoke<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                            <dd>
+                                                                <a href="javascript:;" val="40" class="">
+                                                                    #22 FORBIDDEN PINK<span title="点击取消选择">&nbsp;</span>
+                                                                </a>
+                                                            </dd>
+                                                </dl>
+                                        </div>
+                                    <form id="productNotifyForm" action="/product_notify/save" method="post" novalidate="novalidate">
+                                        <dl id="productNotify" class="productNotify hidden" style="display: none;">
+                                            <dt>您的E-mail:</dt>
+                                            <dd>
+                                                <input type="text" name="email" maxlength="200">
+                                            </dd>
+                                        </dl>
+                                    </form>
+                                    <dl class="quantity">
+                                        <dt>数量:</dt>
+                                        <dd>
+                                            <span id="decrease" class="decrease" onselectstart="return false;">-</span>
+                                            <input type="text" id="quantity" name="quantity" value="1" maxlength="4" onpaste="return false;">
+                                            <span id="increase" class="increase" onselectstart="return false;">+</span>
+                                        </dd>
+                                        <dd>
+                                            件
+                                        </dd>
+                                    </dl>
+                                    <div class="buy">
+                                        <input type="button" id="addProductNotify" class="addProductNotify hidden" value="到货通知我" style="display: none;">
+                                            <input type="button" id="addCart" class="addCart" value="加入购物车">
+                                        <a href="javascript:;" id="addProductFavorite">收藏</a>
+                                    </div>
+                                </div>
+                            <div class="share">
+                                <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+                                    <a class="bds_qzone" title="分享到QQ空间" href="#"></a>
+                                    <a class="bds_tsina" title="分享到新浪微博" href="#"></a>
+                                    <a class="bds_tqq" title="分享到腾讯微博" href="#"></a>
+                                    <a class="bds_renren" title="分享到人人网" href="#"></a>
+                                    <a class="bds_t163" title="分享到网易微博" href="#"></a>
+                                    <span class="bds_more"></span>
+                                    <a class="shareCount" href="#"></a>
+                                </div>
+                            </div>
+                        </div>
+                            <div id="storeInfo" class="storeInfo">
+                                <img src="http://www.chengzigouwu.com/upload/image/201801/2c2fa953-bedd-47f9-b351-2730a718433e.png" alt="橙子自营">
+                                <strong>
+                                    <a href="http://www.chengzigouwu.com/store/51">橙子自营</a>
+                                </strong>
+                                <p class="clearfix">
+                                    <a href="http://www.chengzigouwu.com/store/51">进店逛逛</a>
+                                    <a href="javascript:;" id="addStoreFavorite">收藏本店</a>
+                                </p>
+                            </div>
+                        <div id="bar" class="bar">
+                            <ul style="width: 990px;" class="">
+                                    <li id="introductionTab" class="">
+                                        <a href="#introduction">商品介绍</a>
+                                    </li>
+                                    <li id="reviewTab">
+                                        <a href="#review">商品评论</a>
+                                    </li>
+                                    <li id="consultationTab">
+                                        <a href="#consultation">商品咨询</a>
+                                    </li>
+                            </ul>
+                        </div>
+                            <div id="introduction" name="introduction" class="introduction">
+                                <div class="title">
+                                    <strong>商品介绍</strong>
+                                </div>
+                                    <div><p><img style="width: 790px;" src="../img/256bf9ae-aef9-4cf1-9579-0cfbcc8021ee.jpg"></p><p><img style="width: 790px;" src="../img/4ce77277-49fe-4bcf-8df8-f8d53e2d6c27.jpg"></p><p><img style="width: 790px;" src="../img/ef4bd98c-9736-466c-a897-6bb29a13252b.jpg"></p><p><img style="width: 790px;" src="../img/77ddc97a-1544-41ed-a3c1-5851acc34528.jpg"></p><p><img style="width: 790px;" src=""><br></p></div>
+                            </div>
+                            <div id="review" name="review" class="review">
+                                <div class="title">商品评论</div>
+                                <div class="content clearfix">
+                                        <p>
+                                            暂无商品评论信息 <a href="http://www.chengzigouwu.com/review/add/1121" id="addReview">[发表商品评论]</a>
+                                        </p>
+                                </div>
+                            </div>
+                            <div id="consultation" name="consultation" class="consultation">
+                                <div class="title">商品咨询</div>
+                                <div class="content">
+                                            <p>
+                                                暂无商品咨询信息 <a href="http://www.chengzigouwu.com/consultation/add/1121" id="addConsultation">[发表商品咨询]</a>
+                                            </p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        
+    <div class="footer clear">
+        <div class="service clearfix">
+            <dl>
+                <dt class="icon1">新手指南</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a>会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="icon2">特色服务</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a >会员注册</a>
+                </dd>
+                <dd>
+                    <a >购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="icon3">支付方式</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a>会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="icon4">配送方式</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a>会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <div class="qrCode">
+                <img src="../img/t5.jpg" alt="官方微信">
+                <p>官方微信</p>
+            </div>
+            <div class="qrCode" style="border-left:0px solid #e8e8e8">
+                <img src="../img/t6.png" alt="手机APP">
+                <p>手机APP</p>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="bottomNav">
+                <ul>
+                            <li>
+                                <a>关于我们</a>
+                                |
+                            </li>
+                            <li>
+                                <a>联系我们</a>
+                                |
+                            </li>
+                            <li>
+                                <a>诚聘英才</a>
+                                |
+                            </li>
+                            <li>
+                                <a>隐私政策</a>
+                                |
+                            </li>
+                            <li>
+                                <a>法律声明</a>
+                                |
+                            </li>
+                            <li>
+                                <a>客户服务</a>
+                                |
+                            </li>
+                            <li>
+                                <a>友情链接</a>
+                                
+                            </li>
+                </ul>
+            </div>
+            <div class="info clear" >
+                <p>黔ICP备17008572号-1</p>
+                <p>Copyright © 2005-2017 橙子购物商城 版权所有</p>
+                    <ul>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/ae13eddc-25ac-427a-875d-d1799d751076.gif" alt="支付宝">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/adaa9ac5-9994-4aa3-a336-b65613c85d50.gif" alt="财付通">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/41c18c8d-f69a-49fe-ace3-f16c2eb07983.gif" alt="中国银联">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/ea46ca0a-e8f0-4e2c-938a-5cb19a07cb9a.gif" alt="快递100">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/e12f226b-07f9-4895-bcc2-78dbe551964b.gif" alt="站长统计">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/fd9d6268-e4e2-41f6-856d-4cb8a49eadd1.gif" alt="A5下载">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/6c57f398-0498-4044-80d8-20f6c40d5cef.gif" alt="中国建设银行">
+                                </a>
+                            </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="js/jquery.2.2.4.js"></script> 
+<script src="js/details.js"></script>
+</html>

@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>橙子购物商城</title>
+    
+    <link href="css/common.css" rel="stylesheet" type="text/css">
+    <link href="css/public.css" rel="stylesheet" type="text/css">
+    
+</head>
+<body>
+        <div class="header">
+                <div class="top">
+                    <div class="topNav">
+                        <ul class="left">
+                            <li>
+                                <span class="login-success">您好，欢迎<span>XXX</span</span>
+                                <span id="headerName" class="headerName">&nbsp;</span>
+                            </li>
+                            <li id="headerLogin" class="headerLogin" style="display: list-item;">
+                                <a href="login.html">登录</a>
+                            </li>
+                            <li id="headerRegister" class="headerRegister" style="display: list-item;">
+                                <a href="registered.html">注册</a>
+                            </li>
+                            <li id="headerLogout" class="headerLogout logout" >
+                                <a>[退出]</a>
+                            </li>
+                        </ul>
+                        <ul class="right">
+                                    <li>
+                                        <a>会员中心</a>
+                                    </li>
+                                    <li>
+                                        <a>商家中心</a>
+                                    </li>
+                                    <li>
+                                        <a >帮助中心</a>
+                                    </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row clear">
+                        <div class="span3">
+                             <a href="#">
+                                <img src="../img/b8b50fd7-8f4d-456e-821b-0c0f9d29c123.png" alt="橙子购物商城">
+                            </a>
+                        </div>
+                        <div class="span6">
+                            <div class="search">
+                                <form id="productSearchForm" method="get">
+                                    <input name="keyword" class="keyword" value="搜索 商品/店铺" >
+                                    <button type="submit">&nbsp;</button>
+                                </form>
+                            </div>
+                            <div class="hotSearch">
+                                    热门搜索:
+                                         <a href="#">洗面奶 尿不湿 洗衣液 葡萄酒</a>
+                            </div>
+                        </div>
+                        <div id="headerCart" class="headerCart">
+                            <a   class="cartButton" <a href="#"><span>购物车(<em>0</em>)</span></a>
+                            <div class="detail" style="display: none;">
+                                <div class="title">购物车商品</div>
+                                <div class="items"><table> <tbody><tr> <td>购物车是空的，请去挑选您的商品！</td> </tr> </tbody></table></div>
+                                <div class="summary">共<em>0</em>件商品&nbsp;&nbsp;&nbsp;&nbsp;共计: <em>￥0.00元</em><a   <a href="#">商品结算</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clear">
+                        <div class="span12">
+                            <dl class="mainNav">
+                                <dt>
+                                    <a href="#">所有商品分类</a>
+                                </dt>
+                                        <dd>
+                                            <a href="index.html">首页</a>
+                                        </dd>
+                                        <dd>
+                                             <a>母婴用品</a>
+                                        </dd>
+                                        <dd>
+                                            <a>服装鞋饰</a>
+                                        </dd>
+                                        <dd>
+                                            <a >化妆护理</a>
+                                        </dd>
+                                        <dd>
+                                            <a>生活家用</a>
+                                        </dd>
+                                        <dd>
+                                            <a>食品酒水</a>
+                                        </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div id="broadsideNav" class="broadsideNav">
+                        <ul>
+                            <li class="shoppingCart">
+                                <a href="#"><em>购物车</em></a>
+                            </li>
+                            <li class="memberCenter">
+                                <a href="#"><em>会员中心</em></a>
+                            </li>
+                            <li class="myCoupons">
+                                <a href="#"><em>我的优惠券</em></a>
+                            </li>
+                            <li class="collectCenter">
+                                <a    href="#"><em>我的收藏</em></a>
+                            </li>
+                        </ul>
+                        <div id="goTop" class="goTop"></div>
+                    </div>
+                </div>
+            </div>	
+            <div class="containerIndex index">
+                    <div id="full-screen-slider">
+                            <div class="box banner1">
+                                    <div class="imgbox">
+                                        <img src="http://image.demo.shopxx.net/b2b2c/5.0/201601/313597c4-10be-41a6-8827-9b75889ad88a.jpg"/>
+                                        <img src="http://image.demo.shopxx.net/b2b2c/5.0/201601/f675047e-91ec-46ac-a718-6c003fc9b901.jpg"/>
+                                        
+                                    </div>
+                                </div>
+    </div>
+        </div>
+        <div class="container index">
+            <div class="row clear">
+                <div class="span2">
+                        <div id="productCategoryMenu" class="productCategoryMenu">
+                            <ul>
+                                    <li>
+                                            <div class="item">
+                                                <div>
+                                                        <a href="details.html">
+                                                            <strong>面部护肤</strong>
+                                                        </a>
+                                                        <a>
+                                                            <strong>香水彩妆</strong>
+                                                        </a>
+                                                        <a>
+                                                            <strong>身体护肤</strong>
+                                                        </a>
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <div class="menu">
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>面部护肤</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>面部清洁</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>补水保湿</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>面膜精华</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>眼霜面霜</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>防晒卸妆</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>香水彩妆</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>底妆腮红</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>眼影眼线</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>唇膏唇彩</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>眉笔睫毛膏</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>美妆工具</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>身体护肤</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>沐浴润肤</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>补水保湿</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>精油美体</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>口腔护理</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>牙膏牙粉</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>牙刷牙线</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>漱口水</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>洗发护发</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>洗发护发</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>染发造型</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix last">
+                                                        <dt>
+                                                            <a>女性护理</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>卫生巾</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>脱毛膏</a>
+                                                                </dd>
+                                                    </dl>
+                                                <div class="auxiliary">
+                                                </div>
+                                            </div>
+                                    </li>
+                                    <li>
+                                            <div class="item">
+                                                <div>
+                                                        <a>
+                                                            <strong>进口食品</strong>
+                                                        </a>
+                                                        <a>
+                                                            <strong>休闲食品</strong>
+                                                        </a>
+                                                        <a>
+                                                            <strong>中外美酒</strong>
+                                                        </a>
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <div class="menu">
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>进口食品</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>进口零食</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>冲调饮品</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>休闲食品</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>休闲零食</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>坚果炒货</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>肉铺肉干</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>熟食腊味</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>蜜饯干果</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>中外美酒</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>白酒</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>红酒</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>起泡酒</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>啤酒</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>茗茶</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>绿茶</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>红茶</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>花茶</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>粮油调味</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>米面杂粮</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>方便食品</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a >酱料烘焙</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>营养保健</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>营养品</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix last">
+                                                        <dt>
+                                                            <a>新鲜水果</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a">苹果</a>
+                                                                </dd>
+                                                    </dl>
+                                                <div class="auxiliary">
+                                                </div>
+                                            </div>
+                                    </li>
+                                    <li>
+                                            <div class="item">
+                                                <div>
+                                                        <a>
+                                                            <strong>奶粉</strong>
+                                                        </a>
+                                                        <a>
+                                                            <strong>营养辅食</strong>
+                                                        </a>
+                                                        <a>
+                                                            <strong>婴儿用品</strong>
+                                                        </a>
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <div class="menu">
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>奶粉</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>1段</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a >2段</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>3段</a>|
+                                                                </dd>
+                                                                <dd>>4段</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>孕妇奶粉</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>营养辅食</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>米粉</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>果泥果汁</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>营养成长</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>宝宝零食</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>婴儿用品</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a >奶瓶奶嘴</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a水壶水杯</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>尿裤湿巾</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>洗发沐浴</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix last">
+                                                        <dt>
+                                                            <a >母婴服饰</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>婴儿服饰</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>幼儿服饰</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>孕妈装</a>
+                                                                </dd>
+                                                    </dl>
+                                                <div class="auxiliary">
+                                                </div>
+                                            </div>
+                                    </li>
+                                    <li>
+                                            <div class="item">
+                                                <div>
+                                                        <a>
+                                                            <strong>品质男装</strong>
+                                                        </a>
+                                                        <a>
+                                                            <strong>时尚女装</strong>
+                                                        </a>
+                                                        <a>
+                                                            <strong>精品内衣</strong>
+                                                        </a>
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <div class="menu">
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>品质男装</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>衬衫</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <address>T恤</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>夹克</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>针织衫</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>羊绒衫</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>羽绒服</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>时尚女装</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>衬衫</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>T恤</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>风衣</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>连衣裙</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>牛仔裤</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>休闲裤</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>精品内衣</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>文胸</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>女式内裤</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>男式内裤</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a >保暖内衣</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>秋衣秋裤</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a >塑身美体</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a >精品男鞋</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a >休闲鞋</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>运动鞋</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>凉鞋</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>拖鞋</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>男靴</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix last">
+                                                        <dt>
+                                                            <a>潮流女鞋</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>高跟鞋</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>休闲鞋</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>运动鞋</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>凉鞋</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>拖鞋</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>女靴</a>
+                                                                </dd>
+                                                    </dl>
+                                                <div class="auxiliary">
+                                                </div>
+                                            </div>
+                                    </li>
+                                    <li>
+                                            <div class="item">
+                                                <div>
+                                                        <a>
+                                                            <strong>家纺布艺</strong>
+                                                        </a>
+                                                        <a>
+                                                            <strong>生活日用</strong>
+                                                        </a>
+                                                        <a>
+                                                            <strong>清洁用品</strong>
+                                                        </a>
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <div class="menu">
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>家纺布艺</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>被子</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a >毯子</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>凉席</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>蚊帐</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>床垫</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>布艺</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>生活日用</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>收纳用品</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>晴雨用具</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>浴室用品</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>针织用品</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>净化除味</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>驱蚊驱虫</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix">
+                                                        <dt>
+                                                            <a>清洁用品</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>纸品湿巾</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>衣物洗护</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a >皮具护理</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a >居家清洁</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>清洁工具</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>驱虫用品</a>
+                                                                </dd>
+                                                    </dl>
+                                                    <dl class="clearfix last">
+                                                        <dt>
+                                                            <a>厨房用品</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>刀剪菜板</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a餐具</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>厨房配件</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a >烹饪锅具</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>水具酒具</a>
+                                                                </dd>
+                                                    </dl>
+                                                <div class="auxiliary">
+                                                </div>
+                                            </div>
+                                    </li>
+                                    <li>
+                                            <div class="item last">
+                                                <div>
+                                                        <a >
+                                                            <strong>宠物生活</strong>
+                                                        </a>
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <div class="menu">
+                                                    <dl class="clearfix last">
+                                                        <dt>
+                                                            <a >宠物生活</a>
+                                                        </dt>
+                                                                <dd>
+                                                                    <a>鲜粮罐头</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>宠物零食</a>|
+                                                                </dd>
+                                                                <dd>
+                                                                    <a>宠物玩具</a>
+                                                                </dd>
+                                                    </dl>
+                                                <div class="auxiliary">
+                                                </div>
+                                            </div>
+                                    </li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+        <div class="row clear">
+            <div class="span12">
+                <div class="hotProduct">
+                        <dl class="title1">
+                            <dt>
+                                <a >化妆护理</a>
+                            </dt>
+                                <dd>
+                                    <a>面部护肤</a>
+                                </dd>
+                                <dd>
+                                    <a>香水彩妆</a>
+                                </dd>
+                                <dd>
+                                    <a>身体护肤</a>
+                                </dd>
+                                <dd>
+                                    <a>口腔护理</a>
+                                </dd>
+                                <dd>
+                                    <a>洗发护发</a>
+                                </dd>
+                                <dd>
+                                    <a>女性护理</a>
+                                </dd>
+                        </dl>
+                    <div>
+							<img src="../img/t2.jpg" alt="化妆护理" title="化妆护理">
+                   </div>
+                   <ul class="list2">
+                   
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row clear">
+            <div class="span12">
+                <div class="hotProduct">
+                        <dl class="title2">
+                            <dt>
+                                <a>食品酒水</a>
+                            </dt>
+                                <dd>
+                                    <a>进口食品</a>
+                                </dd>
+                                <dd>
+                                    <a>休闲食品</a>
+                                </dd>
+                                <dd>
+                                    <a>中外美酒</a>
+                                </dd>
+                                <dd>
+                                    <a>茗茶</a>
+                                </dd>
+                                <dd>
+                                    <a>粮油调味</a>
+                                </dd>
+                                <dd>
+                                    <a>营养保健</a>
+                                </dd>
+                                <dd>
+                                    <a>新鲜水果</a>
+                                </dd>
+                        </dl>
+                    <div>
+                                    <a>
+                                        <img src="../img/t3.jpg" alt="食品酒水" title="食品酒水">
+                                    </a>
+                    </div>
+                   <ul class="list3">
+                   
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row clear">
+            <div class="span12">
+                <div class="hotProduct">
+                        <dl class="title3">
+                            <dt>
+                                <a >母婴用品</a>
+                            </dt>
+                                <dd>
+                                    <a >奶粉</a>
+                                </dd>
+                                <dd>
+                                    <a>营养辅食</a>
+                                </dd>
+                                <dd>
+                                    <a>婴儿用品</a>
+                                </dd>
+                                <dd>
+                                    <a >母婴服饰</a>
+                                </dd>
+                        </dl>
+                        <div>
+                            <a>
+                                <img src="../img/t4.jpg" alt="食品酒水" title="食品酒水">
+                            </a>
+                        </div>
+                        <ul class="list4">
+                    
+                        </ul>
+                </div>
+            </div>
+        </div>
+        
+    <div class="footer clear" style="margin-top:200px;">
+        <div class="service clearfix">
+            <dl>
+                <dt class="icon1">新手指南</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a>会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="icon2">特色服务</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a >会员注册</a>
+                </dd>
+                <dd>
+                    <a >购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="icon3">支付方式</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a>会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="icon4">配送方式</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a>会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <div class="qrCode">
+                <img src="../img/t5.jpg" alt="官方微信">
+                <p>官方微信</p>
+            </div>
+            <div class="qrCode" style="border-left:0px solid #e8e8e8">
+                <img src="../img/t6.png" alt="手机APP">
+                <p>手机APP</p>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="bottomNav">
+                <ul>
+                            <li>
+                                <a>关于我们</a>
+                                |
+                            </li>
+                            <li>
+                                <a>联系我们</a>
+                                |
+                            </li>
+                            <li>
+                                <a>诚聘英才</a>
+                                |
+                            </li>
+                            <li>
+                                <a>隐私政策</a>
+                                |
+                            </li>
+                            <li>
+                                <a>法律声明</a>
+                                |
+                            </li>
+                            <li>
+                                <a>客户服务</a>
+                                |
+                            </li>
+                            <li>
+                                <a>友情链接</a>
+                                
+                            </li>
+                </ul>
+            </div>
+            <div class="info clear" >
+                <p>黔ICP备17008572号-1</p>
+                <p>Copyright © 2005-2017 橙子购物商城 版权所有</p>
+                    <ul>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/ae13eddc-25ac-427a-875d-d1799d751076.gif" alt="支付宝">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/adaa9ac5-9994-4aa3-a336-b65613c85d50.gif" alt="财付通">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/41c18c8d-f69a-49fe-ace3-f16c2eb07983.gif" alt="中国银联">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/ea46ca0a-e8f0-4e2c-938a-5cb19a07cb9a.gif" alt="快递100">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/e12f226b-07f9-4895-bcc2-78dbe551964b.gif" alt="站长统计">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/fd9d6268-e4e2-41f6-856d-4cb8a49eadd1.gif" alt="A5下载">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/6c57f398-0498-4044-80d8-20f6c40d5cef.gif" alt="中国建设银行">
+                                </a>
+                            </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="js/jquery.2.2.4.js"></script> 
+<script src="js/jquery.banner.1.1.js"></script>
+<script src="js/ajax.2.0.js"></script>
+<script src="js/index.js"></script>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>会员登录 - Powered By chengzi</title>
+<meta name="author" content="chengzi Team">
+<meta name="copyright" content="chengzi">
+<link href="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/animate.css" rel="stylesheet" type="text/css">
+<link href="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/common.css" rel="stylesheet" type="text/css">
+<link href="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/login.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/jquery_002.js"></script>
+<script type="text/javascript" src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/jquery.js"></script>
+<script type="text/javascript" src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/common.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $loginForm = $("#loginForm");
+	var $username = $("#username");
+	var $password = $("#password");
+	var $captcha = $("#captcha");
+	var $isRememberUsername = $("#isRememberUsername");
+	var $submit = $("input:submit");
+	
+	// 记住用户名
+	if (getCookie("memberUsername") != null) {
+		$isRememberUsername.prop("checked", true);
+		$username.val(getCookie("memberUsername"));
+		$password.focus();
+	} else {
+		$isRememberUsername.prop("checked", false);
+		$username.focus();
+	}
+	
+	// 验证码图片
+	$captcha.captchaImage();
+	
+	// 表单验证、记住用户名
+	$loginForm.validate({
+		rules: {
+			username: "required",
+			password: "required",
+			captcha: "required"
+		},
+		submitHandler: function(form) {
+			$.ajax({
+				url: $loginForm.attr("action"),
+				type: "POST",
+				data: $loginForm.serialize(),
+				dataType: "json",
+				beforeSend: function() {
+					$submit.prop("disabled", true);
+				},
+				success: function(data) {
+					$submit.prop("disabled", false);
+					if ($isRememberUsername.prop("checked")) {
+						addCookie("memberUsername", $username.val(), {expires: 7 * 24 * 60 * 60});
+					} else {
+						removeCookie("memberUsername");
+					}
+						if (data.redirectUrl != null) {
+							location.href = data.redirectUrl;
+						} else {
+							location.href = "/";
+						}
+				},
+				error: function(xhr, textStatus, errorThrown) {
+					setTimeout(function() {
+						$submit.prop("disabled", false);
+					}, 3000);
+					$captcha.captchaImage("refresh", true);
+				}
+			});
+		}
+	});
+
+});
+</script>
+</head>
+<body>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $window = $(window);
+	var $headerName = $("#headerName");
+	var $headerLogin = $("#headerLogin");
+	var $headerRegister = $("#headerRegister");
+	var $headerLogout = $("#headerLogout");
+	var $productSearchForm = $("#productSearchForm");
+	var $productSearchKeyword = $("#productSearchForm [name='keyword']");
+	var $headerCart = $("#headerCart");
+	var $headerCartQuantity = $("#headerCart a.cartButton em");
+	var $headerCartDetail = $("#headerCart div.detail");
+	var $headerCartItems = $("#headerCart div.items");
+	var $headerCartSummary = $("#headerCart div.summary");
+	var $broadsideNav = $("#broadsideNav");
+	var currentMemberUsername = getCookie("currentMemberUsername");
+	var defaultProductSearchKeyword = "搜索 商品/店铺";
+	
+	if ($.trim(currentMemberUsername) != "") {
+		$headerName.text(currentMemberUsername).show();
+		$headerLogout.show();
+	} else {
+		$headerLogin.show();
+		$headerRegister.show();
+	}
+	
+	$productSearchKeyword.focus(function() {
+		if ($.trim($productSearchKeyword.val()) == defaultProductSearchKeyword) {
+			$productSearchKeyword.val("");
+		}
+	});
+	
+	$productSearchKeyword.blur(function() {
+		if ($.trim($productSearchKeyword.val()) == "") {
+			$productSearchKeyword.val(defaultProductSearchKeyword);
+		}
+	});
+	
+	$productSearchForm.submit(function() {
+		if ($.trim($productSearchKeyword.val()) == "" || $productSearchKeyword.val() == defaultProductSearchKeyword) {
+			return false;
+		}
+	});
+	
+	// 购物车信息
+	$window.on("cartInfoLoad", function(event, cartInfo) {
+		var skuQuantity = cartInfo != null && cartInfo.skuQuantity != null ? cartInfo.skuQuantity : 0;
+		var effectivePrice = cartInfo != null && cartInfo.effectivePrice != null ? cartInfo.effectivePrice : 0;
+		if ($headerCartQuantity.text() != skuQuantity && "opacity" in document.documentElement.style) {
+			$headerCartQuantity.fadeOut(function() {
+				$headerCartQuantity.text(skuQuantity).fadeIn();
+			});
+		} else {
+			$headerCartQuantity.text(skuQuantity);
+		}
+		var cartItems = cartInfo.items;
+		if(cartItems == null || cartItems.length <= 0){
+			$headerCartItems.html(
+'<table> <tr> <td>购物车是空的，请去挑选您的商品！<\/td> <\/tr> <\/table>'			);
+		} else {
+			var $headerCartTable = $headerCartItems.html('<table id="cartTable"><\/table>');
+			$.each(cartItems, function(i, cartItem) {
+				$('#cartTable').append(
+'<tr> <td> <a href="' + cartItem.skuPath + '"> <img src="' + cartItem.skuThumbnail + '" \/> <\/a> <\/td> <td> <a href="' + cartItem.skuPath + '">' + escapeHtml(abbreviate(cartItem.skuName, 20, "...")) + '<\/a> <\/td> <td> <span>' + currency(cartItem.price, true, false) + '<\/span>&nbsp; &nbsp;<em>x' + cartItem.quantity + '<\/em> <\/td> <\/tr>'				);
+			});
+		}
+		$headerCartSummary.html(message('共<em>{0}<\/em>件商品', skuQuantity) + '&nbsp;&nbsp;&nbsp;&nbsp;共计: <em>' + currency(effectivePrice, true, true) + '<\/em><a href="/cart/list">商品结算<\/a>');
+	});
+	
+	// 购物车详情
+	$headerCart.hover(
+		function() {
+			if ($headerCartDetail.is(":hidden")) {
+				$headerCart.addClass("active");
+				$headerCartDetail.slideDown("fast");
+			}
+		},
+		function() {
+			if ($headerCartDetail.is(":visible")) {
+				$headerCart.removeClass("active");
+				$headerCartDetail.slideUp("fast");
+			}
+		}
+	);
+	
+	$broadsideNav.find("li").hover(
+		function() {
+			$(this).find("em").show();
+		},function(){
+			$(this).find("em").hide();
+		}
+	);
+
+});
+</script>
+<div class="header">
+	<div class="top">
+		<div class="topNav">
+			<ul class="left">
+				<li>
+					<span>您好，欢迎来到橙子购物商城</span>
+					<span id="headerName" class="headerName">&nbsp;</span>
+				</li>
+				<li id="headerLogin" class="headerLogin" style="display: list-item;">
+					<a href="http://www.chengzigouwu.com/member/login">登录</a>|
+				</li>
+				<li id="headerRegister" class="headerRegister" style="display: list-item;">
+					<a href="http://www.chengzigouwu.com/member/register">注册</a>
+				</li>
+				<li id="headerLogout" class="headerLogout">
+					<a href="http://www.chengzigouwu.com/member/logout">[退出]</a>
+				</li>
+			</ul>
+			<ul class="right">
+						<li>
+							<a href="http://www.chengzigouwu.com/member/index">会员中心</a>
+							|
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/business/index">商家中心</a>
+							|
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/article/list/3">帮助中心</a>
+							
+						</li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="span3">
+				<a href="http://www.chengzigouwu.com/">
+					<img src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/b8b50fd7-8f4d-456e-821b-0c0f9d29c123.png" alt="橙子购物商城">
+				</a>
+			</div>
+			<div class="span6">
+				<div class="search">
+					<form id="productSearchForm" action="/product/search" method="get">
+						<input name="keyword" class="keyword" value="搜索 商品/店铺" autocomplete="off" x-webkit-speech="x-webkit-speech" x-webkit-grammar="builtin:search" maxlength="30">
+						<button type="submit">&nbsp;</button>
+					</form>
+				</div>
+				<div class="hotSearch">
+						热门搜索:
+							<a href="http://www.chengzigouwu.com/product/search?keyword=%E6%B4%97%E9%9D%A2%E5%A5%B6%20%E5%B0%BF%E4%B8%8D%E6%B9%BF%20%E6%B4%97%E8%A1%A3%E6%B6%B2%20%E8%91%A1%E8%90%84%E9%85%92">洗面奶 尿不湿 洗衣液 葡萄酒</a>
+				</div>
+			</div>
+			<div id="headerCart" class="headerCart">
+				<a class="cartButton" href="http://www.chengzigouwu.com/cart/list"><span>购物车(<em>0</em>)</span></a>
+				<div class="detail">
+					<div class="title">购物车商品</div>
+					<div class="items"><table> <tbody><tr> <td>购物车是空的，请去挑选您的商品！</td> </tr> </tbody></table></div>
+					<div class="summary">共<em>0</em>件商品&nbsp;&nbsp;&nbsp;&nbsp;共计: <em>￥0.00元</em><a href="http://www.chengzigouwu.com/cart/list">商品结算</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span12">
+				<dl class="mainNav">
+					<dt>
+						<a href="http://www.chengzigouwu.com/product_category">所有商品分类</a>
+					</dt>
+							<dd>
+								<a href="http://www.chengzigouwu.com/">首页</a>
+							</dd>
+							<dd>
+								<a href="http://www.chengzigouwu.com/product/list/1">母婴用品</a>
+							</dd>
+							<dd>
+								<a href="http://www.chengzigouwu.com/product/list/4">服装鞋饰</a>
+							</dd>
+							<dd>
+								<a href="http://www.chengzigouwu.com/product/list/5">化妆护理</a>
+							</dd>
+							<dd>
+								<a href="http://www.chengzigouwu.com/product/list/6">生活家用</a>
+							</dd>
+							<dd>
+								<a href="http://www.chengzigouwu.com/product/list/308">食品酒水</a>
+							</dd>
+				</dl>
+			</div>
+		</div>
+		<div id="broadsideNav" class="broadsideNav">
+			<ul>
+				<li class="shoppingCart">
+					<a href="http://www.chengzigouwu.com/cart/list"><em>购物车</em></a>
+				</li>
+				<li class="memberCenter">
+					<a href="http://www.chengzigouwu.com/member/index"><em>会员中心</em></a>
+				</li>
+				<li class="myCoupons">
+					<a href="http://www.chengzigouwu.com/member/coupon_code/exchange"><em>我的优惠券</em></a>
+				</li>
+				<li class="collectCenter">
+					<a href="http://www.chengzigouwu.com/member/product_favorite/list"><em>我的收藏</em></a>
+				</li>
+			</ul>
+			<div id="goTop" class="goTop"></div>
+		</div>
+	</div>
+</div>	<div class="container login">
+		<div class="row">
+			<div class="span6">
+									<img src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/ec3ce57d-a929-4fd2-be9f-c1bc68af2e4c.jpg" alt="服务宣传" width="500" height="300">
+
+			</div>
+			<div class="span6">
+				<div class="wrap">
+					<div class="main">
+						<div class="title">
+								<strong>会员登录</strong>USER LOGIN
+						</div>
+						<form id="loginForm" action="/member/login" method="post" novalidate="novalidate">
+							<input name="socialUserId" type="hidden" value="">
+							<input name="uniqueId" type="hidden" value="">
+							<table>
+								<tbody><tr>
+									<th>
+										用户名:
+									</th>
+									<td>
+										<input type="text" id="username" name="username" class="text" maxlength="200" title="用户名/E-mail/手机">
+									</td>
+								</tr>
+								<tr>
+									<th>
+										密 码:
+									</th>
+									<td>
+										<input type="password" id="password" name="password" class="text" maxlength="200" autocomplete="off">
+									</td>
+								</tr>
+									<tr>
+										<th>
+											验证码:
+										</th>
+										<td>
+											<span class="fieldSet">
+												<input type="text" id="captcha" name="captcha" class="text captcha" maxlength="4" autocomplete="off"><img class="captcha-image" src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/image.jpg" title="点击更换验证码"><input name="captchaId" type="hidden" value="462EA266-A11A-4ED1-BA0A-5EE13D1AC6D0">
+											</span>
+										</td>
+									</tr>
+								<tr>
+									<th>
+										&nbsp;
+									</th>
+									<td>
+										<label>
+											<input type="checkbox" id="isRememberUsername" name="isRememberUsername" value="true">记住用户名
+										</label>
+										<label>
+											&nbsp;&nbsp;<a>忘记密码</a>
+										</label>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										&nbsp;
+									</th>
+									<td>
+											<input type="submit" class="submit" value="登 录">
+											<span class="msg"></span>
+									</td>
+								</tr>
+								<tr class="register">
+									<th>
+										&nbsp;
+									</th>
+									<td>
+										<dl>
+											<dt>还没有注册账号？</dt>
+											<dd>
+												立即注册即可体验在线购物！
+													<a href="">立即注册</a>
+											</dd>
+										</dl>
+									</td>
+								</tr>
+							</tbody></table>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="footer">
+	<div class="service clearfix">
+		<dl>
+			<dt class="icon1">新手指南</dt>
+			<dd>
+				<a href="#">购物流程</a>
+			</dd>
+			<dd>
+				<a href="#">会员注册</a>
+			</dd>
+			<dd>
+				<a href="#">购买宝贝</a>
+			</dd>
+			<dd>
+				<a href="#">支付货款</a>
+			</dd>
+			<dd>
+				<a href="#">用户协议</a>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="icon2">特色服务</dt>
+			<dd>
+				<a href="#">购物流程</a>
+			</dd>
+			<dd>
+				<a href="#">会员注册</a>
+			</dd>
+			<dd>
+				<a href="#">购买宝贝</a>
+			</dd>
+			<dd>
+				<a href="#">支付货款</a>
+			</dd>
+			<dd>
+				<a href="#">用户协议</a>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="icon3">支付方式</dt>
+			<dd>
+				<a href="#">购物流程</a>
+			</dd>
+			<dd>
+				<a href="#">会员注册</a>
+			</dd>
+			<dd>
+				<a href="#">购买宝贝</a>
+			</dd>
+			<dd>
+				<a href="#">支付货款</a>
+			</dd>
+			<dd>
+				<a href="#">用户协议</a>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="icon4">配送方式</dt>
+			<dd>
+				<a href="#">购物流程</a>
+			</dd>
+			<dd>
+				<a href="#">会员注册</a>
+			</dd>
+			<dd>
+				<a href="#">购买宝贝</a>
+			</dd>
+			<dd>
+				<a href="#">支付货款</a>
+			</dd>
+			<dd>
+				<a href="#">用户协议</a>
+			</dd>
+		</dl>
+		<div class="qrCode">
+			<img src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/qrcode.jpg" alt="官方微信">
+			官方微信
+		</div>
+		<div class="qrCode" style="border-left:0px solid #e8e8e8">
+			<img src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/app_code.png" alt="手机APP">
+			手机APP
+		</div>
+	</div>
+	<div class="bottom">
+		<div class="bottomNav">
+			<ul>
+						<li>
+							<a href="#">关于我们</a>
+							|
+						</li>
+						<li>
+							<a href="#">联系我们</a>
+							|
+						</li>
+						<li>
+							<a href="#">诚聘英才</a>
+							|
+						</li>
+						<li>
+							<a href="#">隐私政策</a>
+							|
+						</li>
+						<li>
+							<a href="#">法律声明</a>
+							|
+						</li>
+						<li>
+							<a href="#">客户服务</a>
+							|
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/friend_link">友情链接</a>
+							
+						</li>
+			</ul>
+		</div>
+		<div class="info">
+			<p>黔ICP备17008572号-1</p>
+			<p>Copyright © 2005-2017 橙子购物商城 版权所有</p>
+				<ul>
+						<li>
+							<a href="http://www.chengzigouwu.com/" target="_blank">
+								<img src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/ae13eddc-25ac-427a-875d-d1799d751076.gif" alt="支付宝">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/" target="_blank">
+								<img src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/adaa9ac5-9994-4aa3-a336-b65613c85d50.gif" alt="财付通">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/" target="_blank">
+								<img src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/41c18c8d-f69a-49fe-ace3-f16c2eb07983.gif" alt="中国银联">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.kuaidi100.com/" target="_blank">
+								<img src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/ea46ca0a-e8f0-4e2c-938a-5cb19a07cb9a.gif" alt="快递100">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/" target="_blank">
+								<img src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/e12f226b-07f9-4895-bcc2-78dbe551964b.gif" alt="站长统计">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/" target="_blank">
+								<img src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/fd9d6268-e4e2-41f6-856d-4cb8a49eadd1.gif" alt="A5下载">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.chengzigouwu.com/" target="_blank">
+								<img src="%E4%BC%9A%E5%91%98%E7%99%BB%E5%BD%95%20-%20Powered%20By%20chengzi_files/6c57f398-0498-4044-80d8-20f6c40d5cef.gif" alt="中国建设银行">
+							</a>
+						</li>
+				</ul>
+		</div>
+	</div>
+</div>
+
+<div class="goTop"><a href="javascript:;">&nbsp;</a><a href="javascript:;">&nbsp;</a></div></body></html>

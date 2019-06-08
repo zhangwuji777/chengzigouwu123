@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>橙子购物商城</title>
+    
+    <link href="css/common.css" rel="stylesheet" type="text/css">
+    <link href="css/public.css" rel="stylesheet" type="text/css">
+    <link href="css/produce.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+        <div class="header">
+                <div class="top">
+                    <div class="topNav">
+                        <ul class="left">
+                            <li>
+                                <span class="login-success">您好，欢迎<span>XXX</span</span>
+                                <span id="headerName" class="headerName">&nbsp;</span>
+                            </li>
+                            <li id="headerLogin" class="headerLogin" style="display: list-item;">
+                                <a href="login.html">登录</a>
+                            </li>
+                            <li id="headerRegister" class="headerRegister" style="display: list-item;">
+                                <a href="registered.html">注册</a>
+                            </li>
+                            <li id="headerLogout" class="headerLogout logout" >
+                                <a>[退出]</a>
+                            </li>
+                        </ul>
+                        <ul class="right">
+                                    <li>
+                                        <a>会员中心</a>
+                                    </li>
+                                    <li>
+                                        <a>商家中心</a>
+                                    </li>
+                                    <li>
+                                        <a >帮助中心</a>
+                                    </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row clear">
+                        <div class="span3">
+                             <a href="#">
+                                <img src="../img/b8b50fd7-8f4d-456e-821b-0c0f9d29c123.png" alt="橙子购物商城">
+                            </a>
+                        </div>
+                        <div class="span6">
+                            <div class="search">
+                                <form id="productSearchForm" method="get">
+                                    <input name="keyword" class="keyword" value="搜索 商品/店铺" >
+                                    <button type="submit">&nbsp;</button>
+                                </form>
+                            </div>
+                            <div class="hotSearch">
+                                    热门搜索:
+                                         <a href="#">洗面奶 尿不湿 洗衣液 葡萄酒</a>
+                            </div>
+                        </div>
+                        <div id="headerCart" class="headerCart">
+                            <a   class="cartButton" <a href="#"><span>购物车(<em>0</em>)</span></a>
+                            <div class="detail" style="display: none;">
+                                <div class="title">购物车商品</div>
+                                <div class="items"><table> <tbody><tr> <td>购物车是空的，请去挑选您的商品！</td> </tr> </tbody></table></div>
+                                <div class="summary">共<em>0</em>件商品&nbsp;&nbsp;&nbsp;&nbsp;共计: <em>￥0.00元</em><a   <a href="#">商品结算</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clear">
+                        <div class="span12">
+                            <dl class="mainNav">
+                                <dt>
+                                    <a href="#">所有商品分类</a>
+                                </dt>
+                                        <dd>
+                                            <a href="index.html">首页</a>
+                                        </dd>
+                                        <dd>
+                                             <a>母婴用品</a>
+                                        </dd>
+                                        <dd>
+                                            <a>服装鞋饰</a>
+                                        </dd>
+                                        <dd>
+                                            <a >化妆护理</a>
+                                        </dd>
+                                        <dd>
+                                            <a>生活家用</a>
+                                        </dd>
+                                        <dd>
+                                            <a>食品酒水</a>
+                                        </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div id="broadsideNav" class="broadsideNav">
+                        <ul>
+                            <li class="shoppingCart">
+                                <a href="#"><em>购物车</em></a>
+                            </li>
+                            <li class="memberCenter">
+                                <a href="#"><em>会员中心</em></a>
+                            </li>
+                            <li class="myCoupons">
+                                <a href="#"><em>我的优惠券</em></a>
+                            </li>
+                            <li class="collectCenter">
+                                <a href="#"><em>我的收藏</em></a>
+                            </li>
+                        </ul>
+                        <div id="goTop" class="goTop"></div>
+                    </div>
+                </div>
+            </div>	
+            <div class="container productDetail">
+                <div class="row">
+                    <div class="span2">
+            <div class="hotProductCategory">
+                    <dl class="odd clearfix">
+                        <dt>
+                            <a href="">化妆护理</a>
+                        </dt>
+                                <dd>
+                                    <a href="">面部护肤</a>
+                                </dd>
+                                <dd>
+                                    <a href="">香水彩妆</a>
+                                </dd>
+                                <dd>
+                                    <a href="">身体护肤</a>
+                                </dd>
+                    </dl>
+                    <dl class="even clearfix">
+                        <dt>
+                            <a href="">食品酒水</a>
+                        </dt>
+                                <dd>
+                                    <a href="">进口食品</a>
+                                </dd>
+                                <dd>
+                                    <a href="">休闲食品</a>
+                                </dd>
+                                <dd>
+                                    <a href="">中外美酒</a>
+                                </dd>
+                    </dl>
+                    <dl class="odd clearfix">
+                        <dt>
+                            <a href="">母婴用品</a>
+                        </dt>
+                                <dd>
+                                    <a href="">奶粉</a>
+                                </dd>
+                                <dd>
+                                    <a href="">营养辅食</a>
+                                </dd>
+                                <dd>
+                                    <a href="">婴儿用品</a>
+                                </dd>
+                               
+                    </dl>
+                    <dl class="even clearfix">
+                        <dt>
+                            <a href="">服装鞋靴</a>
+                        </dt>
+                                <dd>
+                                    <a href="">品质男装</a>
+                                </dd>
+                                <dd>
+                                    <a href="">时尚女装</a>
+                                </dd>
+                                <dd>
+                                    <a href="">精品内衣</a>
+                                </dd>
+                         
+                    </dl>
+                    <dl class="odd clearfix">
+                        <dt>
+                            <a href="">家居生活</a>
+                        </dt>
+                                <dd>
+                                    <a href="">家纺布艺</a>
+                                </dd>
+                                <dd>
+                                    <a href="">生活日用</a>
+                                </dd>
+                                <dd>
+                                    <a href="">清洁用品</a>
+                                </dd>
+                              
+                    </dl>
+                    <dl class="even clearfix">
+                        <dt>
+                            <a href="">宠物用品</a>
+                        </dt>
+                                <dd>
+                                    <a href="">宠物生活</a>
+                                </dd>
+                    </dl>
+            </div>
+                <div class="hotProduct">
+                    <dl>
+                        <dt>热销商品</dt>
+                            <dd>
+                                <a href="">
+                                    <img src="http://www.chengzigouwu.com/upload/image/201801/0b308ab9-706e-41fd-a5b2-2061cd96410c_thumbnail.jpg" alt="日本贝亲母乳实感宽口PPSU奶瓶160ml绿色 (新款）">
+                                    <span title="日本贝亲母乳实感宽口PPSU奶瓶160ml绿色 (新款）">日本贝亲母乳实感宽口PPSU奶瓶160ml绿色 (新款）</span>
+                                </a>
+                                <strong>
+                                    ￥125.00
+                                        <del>￥150.00</del>
+                                </strong>
+                            </dd>
+                            <dd>
+                                <a href="">
+                                    <img src="http://www.chengzigouwu.com/upload/image/201801/0826a778-5527-4200-9cbc-a350d2be2439_thumbnail.jpg" alt="日本贝亲母乳实感宽口PPSU奶瓶240ml绿色 (新款）">
+                                    <span title="日本贝亲母乳实感宽口PPSU奶瓶240ml绿色 (新款）">日本贝亲母乳实感宽口PPSU奶瓶240ml绿色 (新款）</span>
+                                </a>
+                                <strong>
+                                    ￥135.00
+                                        <del>￥162.00</del>
+                                </strong>
+                            </dd>
+                            <dd>
+                                <a>
+                                    <img src="http://www.chengzigouwu.com/upload/image/201801/d1875d77-ed9b-4690-ac40-3747e9af8d9a_thumbnail.jpg" alt="日本贝亲母乳实感宽口PPSU奶瓶240ml橙色(新款）">
+                                    <span title="日本贝亲母乳实感宽口PPSU奶瓶240ml橙色(新款）">日本贝亲母乳实感宽口PPSU奶瓶240ml橙色(新款）</span>
+                                </a>
+                                <strong>
+                                    ￥135.00
+                                        <del>￥162.00</del>
+                                </strong>
+                            </dd>
+                    </dl>
+                </div>
+        			</div>
+                    <div class="span10 clear">
+                        <div class="breadcrumb clear">
+                            <ul class="clear">
+                                <li>
+                                    <a href="index.html">首页</a>
+                                </li>
+                                <li>
+                                    <a>母婴用品</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                       
+                 </div>
+                    <div id="result" class="result grid clearfix">
+                                    <ul>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/758">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        日本贝亲液体爽身粉热痱新生儿婴儿童宝宝去痱子粉贝
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥99.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="858">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="758"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="758"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/615">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        日本贝亲pigeon婴儿手口湿巾盒(内含70抽湿巾一包) 
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥37.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="715">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="615"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="615"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/614">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        日本原装进口Pigeon贝亲婴幼儿奶瓶或蔬菜清洗液700m
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥60.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="714">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="614"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="614"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/613">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        日本原装贝亲婴幼儿奶瓶或蔬菜清洗液800ml瓶装
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥75.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="713">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="613"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="613"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/612">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        贝亲日本原装贝亲婴幼儿无添加去污洗衣液600ml
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥69.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="712">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="612"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="612"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/611">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        贝亲日本原装贝亲婴幼儿无添加去污洗衣液500ml补充
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥52.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="711">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="611"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="611"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/610">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        贝亲无添加温和婴儿洗衣液720ml（替换装）新款【日本
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥60.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="710">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="610"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="610"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/609">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        贝亲（Pigeon）无添加温和婴儿洗衣液800ml桶装（新
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥80.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="709">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="609"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="609"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/608">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        贝亲直向旋转双向两用刷
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥49.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="708">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="608"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="608"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/607">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        贝亲奶瓶刷 婴儿奶嘴刷套装 尼龙奶瓶刷/奶嘴刷清洗
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥49.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="707">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="607"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="607"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/606">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        贝亲Pigeon母乳实感宽口径奶瓶专用奶嘴刷
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥34.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="706">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="606"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="606"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/605">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        贝亲（Pigeon）宽口径玻璃 仿母乳实感耐热奶瓶240ml
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥148.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="705">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="605"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="605"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/604">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        贝亲宽口径玻璃 仿母乳实感耐热奶瓶160ml 绿色配通
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥165.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="704">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="604"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="604"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/603">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        贝亲 Pigeon 宽口玻璃仿母乳实感耐热奶瓶240ml橙色
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥148.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="703">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="603"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="603"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/602">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        贝亲 日本原装进口宽口径奶瓶母乳实感防胀气耐热奶
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥125.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="702">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="602"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="602"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/601">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        贝亲 日本原装进口宽口径奶瓶母乳实感防胀气耐热奶
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥125.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="701">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="601"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="601"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/577">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        日本大王纸尿裤维E短裤系列女宝宝XXL28片超棉柔透气
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥109.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="677">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="577"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="577"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/576">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        日本大王维E系列学步裤男 XXL28片(13-25kg) 原装进
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥109.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="676">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="576"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="576"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/575">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        日本大王维E系列学步裤女 XL38片(12-20kg) 原装进口
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥109.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="675">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="575"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="575"></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.chengzigouwu.com/product/detail/574">
+                                                    <img src="" style="display: inline;">
+                                                    <div>
+                                                        日本大王维E系列 学步裤男 XL38片(12-20kg) 原装进
+                                                    </div>
+                                                </a>
+                                                <strong class="text-ellipsis">
+                                                        ￥109.00
+                                                </strong>
+                                                <div class="listShop">
+                                                    <div class="shopName">
+                                                        <a class="text-ellipsis" href="http://www.chengzigouwu.com/store/51" title="橙子自营">橙子自营</a>
+                                                    </div>
+                                                </div>
+                                                <div class="action">
+                                                        <a href="javascript:;" class="addCart" skuid="674">加入购物车</a>
+                                                    <a href="javascript:;" class="addProductFavorite" title="收藏" productid="574"></a>
+                                                    <a href="javascript:;" class="addCompare" title="对比" productid="574"></a>
+                                                </div>
+                                            </li>
+                                    </ul>
+                            </div>
+                                    <div class="pagination">
+                                            <span class="firstPage">首页</span>
+                                            <span class="previousPage">上一页</span>
+                                                <span class="currentPage">1</span>
+                                                <a href="javascript: $.pageSkip(2);">2</a>
+                                                <a href="javascript: $.pageSkip(3);">3</a>
+                                            <a href="javascript: $.pageSkip(2);" class="nextPage">下一页</a>
+                                            <a href="javascript: $.pageSkip(3);" class="lastPage">末页</a>
+                                    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    <div class="footer clear">
+        <div class="service clearfix">
+            <dl>
+                <dt class="icon1">新手指南</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a>会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="icon2">特色服务</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a >会员注册</a>
+                </dd>
+                <dd>
+                    <a >购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="icon3">支付方式</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a>会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="icon4">配送方式</dt>
+                <dd>
+                    <a>购物流程</a>
+                </dd>
+                <dd>
+                    <a>会员注册</a>
+                </dd>
+                <dd>
+                    <a>购买宝贝</a>
+                </dd>
+                <dd>
+                    <a>支付货款</a>
+                </dd>
+                <dd>
+                    <a>用户协议</a>
+                </dd>
+            </dl>
+            <div class="qrCode">
+                <img src="../img/t5.jpg" alt="官方微信">
+                <p>官方微信</p>
+            </div>
+            <div class="qrCode" style="border-left:0px solid #e8e8e8">
+                <img src="../img/t6.png" alt="手机APP">
+                <p>手机APP</p>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="bottomNav">
+                <ul>
+                            <li>
+                                <a>关于我们</a>
+                                |
+                            </li>
+                            <li>
+                                <a>联系我们</a>
+                                |
+                            </li>
+                            <li>
+                                <a>诚聘英才</a>
+                                |
+                            </li>
+                            <li>
+                                <a>隐私政策</a>
+                                |
+                            </li>
+                            <li>
+                                <a>法律声明</a>
+                                |
+                            </li>
+                            <li>
+                                <a>客户服务</a>
+                                |
+                            </li>
+                            <li>
+                                <a>友情链接</a>
+                                
+                            </li>
+                </ul>
+            </div>
+            <div class="info clear" >
+                <p>黔ICP备17008572号-1</p>
+                <p>Copyright © 2005-2017 橙子购物商城 版权所有</p>
+                    <ul>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/ae13eddc-25ac-427a-875d-d1799d751076.gif" alt="支付宝">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/adaa9ac5-9994-4aa3-a336-b65613c85d50.gif" alt="财付通">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/41c18c8d-f69a-49fe-ace3-f16c2eb07983.gif" alt="中国银联">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/ea46ca0a-e8f0-4e2c-938a-5cb19a07cb9a.gif" alt="快递100">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/e12f226b-07f9-4895-bcc2-78dbe551964b.gif" alt="站长统计">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/fd9d6268-e4e2-41f6-856d-4cb8a49eadd1.gif" alt="A5下载">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <img src="../img/6c57f398-0498-4044-80d8-20f6c40d5cef.gif" alt="中国建设银行">
+                                </a>
+                            </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="js/jquery.2.2.4.js"></script> 
+
+</html>
